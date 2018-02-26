@@ -1,0 +1,360 @@
+$width_app = 1200px
+$height_logo = 2em
+
+$color_main = #851d1c
+$color_gray = #999
+$color_drak = #333
+$color_bg = #fafafa
+$color_line = #DDD
+$color_intro = #e8e3e3
+$space_size = 1em
+
+*
+  margin 0
+  padding 0
+  text-decoration none
+
+a
+  color $color_drak
+  &:hover
+    color $color_main
+
+table
+  border-spacing 0
+
+body
+  font 1.1em/1.5 Helvetica, Microsoft YaHei, Arial, sans-serif
+  color $color_drak
+
+.app
+  hr,
+  .app-line1
+    border none
+    display block
+    height 1px
+    width 100%
+    margin 1em auto
+    background-color $color_line
+
+  .app-line2
+    border none
+    height 2px
+    width 100%
+    margin 1em auto
+    background-color $color_line
+
+  .ad-link
+    color $color_gray
+  
+  .app-header
+    width 100%
+    // border-top 3px solid $color_main
+
+    .app-nav
+      margin 0 auto
+      padding 0 $space_size
+      width $width_app
+      padding 0.5em 0
+      display flex
+      align-items center
+      justify-content space-between
+
+      .app-logo
+        display flex
+        align-items center
+        justify-content center
+
+        .app-logo-image
+          height $height_logo
+
+        .app-logo-title
+          margin-left 0.5em
+          font-size 1.3em
+          color $color_gray
+
+      .app-nav-menu
+        color $color_drak
+        a
+          margin-left 1em
+
+          &:hover
+            color $color_main
+    
+    .app-brand
+      width 100%
+      padding 1.5em 0 2em 0
+      display flex
+      align-items center
+      justify-content center
+      font-size 3em
+      color white
+      background-color $color_main
+      box-shadow 0 0 1px 1px $color_gray
+      // border-bottom 1px solid $color_main
+
+  .app-body
+    overflow-x hidden
+    margin 0 $space_size
+    width $width_app
+    margin $space_size auto
+    display flex
+    justify-content space-between
+
+    .app-container
+      flex 0.7
+      width 100%
+
+      .app-page
+        display flex
+        flex-wrap wrap
+        // justify-content space-between
+
+        a
+          // display block
+          margin-bottom $space_size
+          background-color $color_bg
+          padding 0.3em 0.8em
+          margin-right $space_size
+          // margin 0.3em
+
+          &.app-page-active
+            background-color $color_main
+            color white
+
+    .app-side
+      flex 0.3
+      width 100%
+      margin-left $space_size
+
+      .app-side-item
+        padding $space_size
+        background-color $color_bg
+        margin-bottom $space_size
+
+        .app-side-title
+          font-size 1.2em
+          margin-bottom 0.5em
+          color $color_main
+          &:before
+            content "■ "
+
+        .app-side-list
+          li
+            list-style circle
+            margin-bottom 0.3em
+
+.app-article-list
+  .app-article
+    padding $space_size
+    background-color $color_bg
+    margin-bottom $space_size
+
+  .app-article-list-tools
+    .app-article-link
+      text-align center
+      text-decoration underline
+
+.app-article
+  .app-article-header
+    .app-article-property
+      display flex
+
+      .app-article-tag
+        margin-right 0.5em
+
+        span
+          font-size 0.8em
+          margin-right 0.5em
+          color white
+          padding 0.5em 0.5em 0.3em 0.5em
+
+      .app-article-date
+        margin-right $space_size
+        color $color_gray
+
+
+    .app-article-title
+      // text-align center
+      margin-top 0.5em
+      font-size 2em
+
+      a
+        color $color_main
+
+  .app-article-content
+    display block
+    padding-bottom 2em
+    // width 100%
+
+    img
+      float right
+      max-width 50%
+      margin-left $space_size
+      margin-bottom $space_size
+
+      &[alt=full]
+        margin-left 0
+        float none
+        max-width 100%
+        // width 100%
+
+    a
+      color $color_main
+      cursor pointer
+
+    ul
+      margin-left 1.5em
+      margin-top $space_size
+
+      li
+        ul
+          margin-top 0
+
+    ul, blockquote, p, div
+      code
+        color $color_main
+        // font-size 1.2em
+        font-family Helvetica, Microsoft YaHei, Arial, sans-serif
+
+    blockquote
+      margin $space_size 0
+      padding 0.3em $space_size
+      background-color $color_bg
+      border-left 0.2em solid $color_gray
+      // font-style italic
+
+    table
+      width 100%
+      margin $space_size 0
+      // box-sizing content-box
+      border-right 1px solid $color_line
+
+      thead
+        background-color $color_line
+        tr
+          th
+            font-weight normal
+            text-align center
+            padding 0.5em 0.3em
+
+      tbody
+        tr
+          td
+            padding 0.5em 0.3em
+            border-left 1px solid $color_line
+            border-bottom 1px solid $color_line
+
+    pre
+      margin $space_size 0
+
+    h1
+      font-weight normal
+
+    h2
+      font-weight normal
+      padding-left 0.5em
+      margin-top $space_size
+      border-left 0.1em solid $color_main
+
+    p
+      line-height 1.8em
+      margin 1em auto
+
+  .app-article-notice
+    padding $space_size
+    // color $color_gray
+    background-color $color_bg
+    border-left 0.1em solid $color_main
+
+    a
+      color $color_main
+
+  .app-random
+    display flex
+
+    .app-random-item
+      padding $space_size 0
+      flex 0.5
+
+      &:last-child
+        text-align right
+
+  .app-share
+    margin $space_size * 2 0
+    overflow auto
+    // &:after
+    //   clear both
+    //   content ''
+    //   display block
+    //   width 0
+    //   height 0
+    //   visibility hidden
+
+
+.app-article-intro
+  .app-article-content
+    table
+      border-right 1px solid $color_intro
+
+      thead
+        background-color $color_intro
+
+      tbody
+        tr
+          td
+            border-left 1px solid $color_intro
+            border-bottom 1px solid $color_intro
+
+@media (max-width: $width_app)
+  .app
+    padding 0 $space_size    
+    
+    .app-header
+      .app-nav
+        width 100%
+    .app-body
+        width 100%
+
+@media (max-width: 400px)
+  .app
+    .app-header
+      .app-nav
+        .app-nav-menu
+          display none
+  
+
+@media (max-width: 600px)
+  .app
+    .app-header
+      .app-brand
+        display none
+
+  .app-article
+    .app-article-header
+      .app-article-property
+        flex-direction column
+
+        .app-article-date
+          padding 0.5em 0
+
+    .app-article-content
+      p
+        img
+          display block
+          margin-left 0
+          float none
+          max-width 100%
+
+@media (max-width: 800px)
+  .app
+    .app-body
+      .app-container
+        flex 1
+
+      .app-side
+        display none
+
+@media (max-width: 1000px)
+  .app
+    .ad-link
+      display none

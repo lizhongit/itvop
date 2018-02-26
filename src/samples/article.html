@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link href="/css/app.stylus" rel="stylesheet" type="text/css" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/logo.png" />
+  </head>
+  <body>
+    <div class="app">
+      <div class="app-header">
+        <div class="app-nav">
+          <a class="app-logo">
+            <img class="app-logo-image" src="/images/logo.png" />
+            <span class="app-logo-title">琼台博客</span>      
+          </a>
+
+          <div class="app-nav-menu">
+            <a class="ad-link" target="_blank" href="https://www.vultr.com/?ref=7073914">A high performance and more than 15 locations VPS just only $2.5/Month</a>
+            <a>About blog</a>
+            <a>About me</a>
+          </div>
+        </div>
+
+        <div class="app-brand">
+          Be a crazy programer
+        </div>
+      </div>
+
+      <div class="app-body">
+
+        <div class="app-container app-article">
+          <div class="app-article-header">
+            <div class="app-article-property">
+              <div class="app-article-date">2017-10-18</div>
+              <div class="app-article-tag">
+                <span style="background-color:blueviolet;">MySQL</span>
+                <span style="background-color:rgb(226, 162, 43);">Golang</span>
+                <span style="background-color:rgb(43, 76, 226);">HTML5</span>
+              </div>
+            </div>
+            <div class="app-article-title">关于Facebook 的 React 专利许可证!</div>
+          </div>
+
+          <div class="app-line2"></div>
+
+          <div class="app-article-content">
+            <p>
+              <img alt="full1" src="/images/engineer.jpg" />
+              整个事件的回顾Gitlab.com在第一时间就放到了Google Doc上，事后，又发了一篇Blog来说明这个事，在这里，我简单的回顾一下这个事件的过程。              
+            </p>
+            <p>
+              首先，一个叫YP的同学在给gitlab的线上数据库做一些负载均衡的工作，在做这个工作时的时候突发了一个情况，Gitlab被DDoS攻击，数据库的使用飙高，在block完攻击者的IP后，发现有个staging的数据库(db2.staging)已经落后生产库4GB的数据，于是YP同学在Fix这个staging库的同步问题的时候，发现db2.staging有各种问题都和主库无法同步，在这个时候，YP同学已经工作的很晚了，在尝试过多个方法后，发现db2.staging都hang在那里，无法同步，于是他想把db2.staging的数据库删除了，这样全新启动一个新的复制，结果呢，删除数据库的命令错误的敲在了生产环境上（db1.cluster），结果导致整个生产数据库被误删除。（陈皓注：这个失败基本上就是 “工作时间过长” + “在多数终端窗口中切换中迷失掉了”）
+            </p>
+
+            <h2>Getting started</h2>
+
+            <pre>
+<code class="Bash">$ sudo apt-get update
+$ sudo apt-get install software-properties-common
+$ sudo add-apt-repository ppa:certbot/certbot
+$ sudo apt-get update
+$ sudo apt-get install python-certbot-nginx</code>
+            </pre>
+
+            <h2>Start server</h2>
+
+            <pre>
+              <code class="JavaScript">let path = require('path')
+let srcPath = './src'
+
+module.exports = {
+  TITLE: 'QTTC',
+  DIST_PATH: './dist',
+  SCR_PATH: './src',
+  ARCHIVES_EXTENSION_NAME: 'md',
+  ARCHIVES_NO_SEPARATOR: '_',
+  ARCHIVES_PATH: path.join(srcPath, 'archives'),
+  TEMPLATES_PATH: path.join(srcPath, 'templates'),
+  TPL_LIST: 'list.html'
+}</code>
+            </pre>
+            <table>
+                <thead>
+                <tr>
+                <th>Tables</th>
+                <th style="text-align:center">Are</th>
+                <th style="text-align:right">Cool</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                <td>col 3 is</td>
+                <td style="text-align:center">right-aligned</td>
+                <td style="text-align:right">$1600</td>
+                </tr>
+                <tr>
+                <td>col 2 is</td>
+                <td style="text-align:center">centered</td>
+                <td style="text-align:right">$12</td>
+                </tr>
+                <tr>
+                <td>zebra stripes</td>
+                <td style="text-align:center">are neat</td>
+                <td style="text-align:right">$1</td>
+                </tr>
+                </tbody>
+            </table>
+            <h2>End</h2>
+            <p>
+                <img src="/images/m.jpg" />
+                最终，gitlab从db1.staging上把6个小时前的数据copy回来，结果发现速度非常的慢，备份结点只有60Mbits/S，拷了很长时间（陈皓注：为什么不把db1.staging给直接变成生产机？因为那台机器的性能很差）。数据现在的恢复了，不过，因为恢复的数据是6小时前的，所以，有如下的数据丢失掉了：            
+                在恢复的过程中，他们发现只有db1.staging的数据库可以用于恢复，而其它的5种备份机制都不可用，第一个是数据库的同步，没有同步webhook，第二个是对硬盘的快照，没有对数据库做，第三个是用pg_dump的备份，发现版本不对（用9.2的版本去dump 9.6的数据）导致没有dump出数据，第四个S3的备份，完全没有备份上，第五个是相关的备份流程是问题百出的，只有几个粗糙的人肉的脚本和糟糕的文档，也就是说，不但是是人肉的，而且还是完全不可执行的。（陈皓注：就算是这些备份机制都work，其实也有问题，因为这些备份大多数基本上都是24小时干一次，所以，要从这些备份恢复也一定是是要丢数据的了，只有第一个数据库同步才会实时一些）
+              </p>
+            <ul>
+                <li>asdfasdf</li>
+                <li>asdfasdfasf</li>
+                <li>asdfasdfasfd</li>
+            </ul>
+            <p>
+              <a>What do you want?</a>
+              最终，gitlab从db1.staging上把6个小时前的数据copy回来，结果发现速度非常的慢，备份结点只有60Mbits/S，拷了很长时间（陈皓注：为什么不把db1.staging给直接变成生产机？因为那台机器的性能很差）。数据现在的恢复了，不过，因为恢复的数据是6小时前的，所以，有如下的数据丢失掉了：            
+              在恢复的过程中，他们发现只有db1.staging的数据库可以用于恢复，而其它的5种备份机制都不可用，第一个是数据库的同步，没有同步webhook，第二个是对硬盘的快照，没有对数据库做，第三个是用pg_dump的备份，发现版本不对（用9.2的版本去dump 9.6的数据）导致没有dump出数据，第四个S3的备份，完全没有备份上，第五个是相关的备份流程是问题百出的，只有几个粗糙的人肉的脚本和糟糕的文档，也就是说，不但是是人肉的，而且还是完全不可执行的。（陈皓注：就算是这些备份机制都work，其实也有问题，因为这些备份大多数基本上都是24小时干一次，所以，要从这些备份恢复也一定是是要丢数据的了，只有第一个数据库同步才会实时一些）
+            </p>
+    
+          </div>
+
+          <div class="app-line1"></div>
+
+          <div class="app-share">
+            <!-- JiaThis Button BEGIN -->
+            <div class="jiathis_style_32x32">
+                <a class="jiathis_button_qzone"></a>
+                <a class="jiathis_button_tsina"></a>
+                <a class="jiathis_button_tqq"></a>
+                <a class="jiathis_button_renren"></a>
+                <a class="jiathis_button_kaixin001"></a>
+                <a class="jiathis_button_weixin"></a>
+                <a class="jiathis_button_douban"></a>
+                <a class="jiathis_button_hi"></a>
+                <a class="jiathis_button_ydnote"></a>
+                <a href="http://www.jiathis.com/share?uid=2157402" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+                <a class="jiathis_counter_style"></a>
+            </div>
+            <!-- JiaThis Button END -->
+          </div>
+
+          <div class="app-article-notice">
+            <p>Article title: <a href="">关于Facebook 的 React 专利许可证!</a></p>
+            <p>Article link: <a href="">http://example.com/a.html</a></p>
+            <p>Article forward: 转载本站文章请注明作者和出处</p>
+          </div>
+
+          <div class="app-random">
+            <div class="app-random-item">
+              <a>Docker基础技术：Linux Namespace（上）</a>
+            </div>
+            <div class="app-random-item">
+              <a>关于Facebook 的 React 专利许可证!</a>
+            </div>
+          </div>
+
+          <div class="app-line1"></div>
+          
+          <div>Comment Section</div>
+        </div>
+        
+        <div class="app-side">
+          <div class="app-side-item">
+            <div class="app-side-title">Recommand</div>
+            <div class="app-side-list">
+              <li><a href="">如何免费的让网站启用HTTPS</a></li>
+              <li><a href="">关于Facebook 的 React 专利许可证</a></li>
+              <li><a href="">从Gitlab误删除数据库想到的</a></li>
+              <li><a href="">这多年来我一直在钻研的技术</a></li>
+              <li><a href="">Docker基础技术：Linux Namespace（上）</a></li>
+              <li><a href="">Docker基础技术：Linux Namespace（下）</a></li>
+              <li><a href="">Linus：为何对象引用计数必须是原子的</a></li>
+              <li><a href="">做个环保主义的程序员</a></li>
+              <li><a href="">6个变态的C语言Hello World程序</a></li>
+            </div>
+          </div>
+
+          <div class="app-side-item">
+            <div class="app-side-title">Archives</div>
+            <div class="app-side-list">
+              <li><a href="">如何免费的让网站启用HTTPS</a></li>
+              <li><a href="">关于Facebook 的 React 专利许可证</a></li>
+              <li><a href="">从Gitlab误删除数据库想到的</a></li>
+              <li><a href="">这多年来我一直在钻研的技术</a></li>
+              <li><a href="">Docker基础技术：Linux Namespace（上）</a></li>
+              <li><a href="">Docker基础技术：Linux Namespace（下）</a></li>
+              <li><a href="">Linus：为何对象引用计数必须是原子的</a></li>
+              <li><a href="">做个环保主义的程序员</a></li>
+              <li><a href="">6个变态的C语言Hello World程序</a></li>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <link href="/asserts/tomorrow.min.css" rel="stylesheet" type="text/css" />    
+    <script src="/asserts/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <script type="text/javascript" >
+      var jiathis_config={
+        data_track_clickback:true,
+        summary:"",
+        shortUrl:false,
+        hideMore:false
+      }
+    </script>
+    <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=2157402" charset="utf-8"></script>
+  </body>
+</html>
