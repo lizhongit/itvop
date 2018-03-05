@@ -188,7 +188,7 @@ let arr = files.filter(fileName => {
   return fileName.indexOf(conf.ARCHIVES_NO_SEPARATOR) >= 1 && fileName.split('.')[1] === conf.ARCHIVES_EXTENSION_NAME && Number(fileName.split(conf.ARCHIVES_NO_SEPARATOR)[0]) >= 1
 })
 arr = arr.sort((f1, f2) => {
-  return Number(f1.split(conf.ARCHIVES_NO_SEPARATOR)[0]) > Number(f2.split(conf.ARCHIVES_NO_SEPARATOR)[0])
+  return Number(f1.split(conf.ARCHIVES_NO_SEPARATOR)[0]) < Number(f2.split(conf.ARCHIVES_NO_SEPARATOR)[0])
 })
 
 arr.forEach(fileName => {
