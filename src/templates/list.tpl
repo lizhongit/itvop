@@ -6,7 +6,7 @@
       <div class="app-article-tag">{{{ tagsHTML }}}</div>
     </div>
     <div class="app-article-title">
-      <a href="{{ link }}">{{ properties.title }}</a>
+      <a href="{{ link }}" title="{{ properties.title }}">{{ properties.title }}</a>
     </div>
   </div>
 
@@ -17,7 +17,7 @@
     <p>...</p>
   </div>
   <div class="app-article-list-tools">
-    <p class="app-article-link"><a href="{{ link }}">Read the full article</a></p>
+    <p class="app-article-link"><a href="{{ link }}" title="{{ properties.title }}">Read the full article</a></p>
   </div>
 </div>
 {{/each}}

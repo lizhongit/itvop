@@ -5,12 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rm -rf ./dist && node ./build/index.js && cp -R ./src/images ./dist",
+    "build": "rm -rf ./dist && node ./build/index.js && cp -R ./src/images ./dist && cp -R ./src/static ./dist",
     "server-dist": "lite-server -c ./build/server-dist.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "clean-css": "^4.1.11",
     "handlebars": "^4.0.11",
     "highlight.js": "^9.12.0",
     "markdown-it": "^8.4.0",

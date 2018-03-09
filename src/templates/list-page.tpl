@@ -15,7 +15,7 @@
     <title>{{ title }}</title>
     <link rel="icon" type="image/png" sizes="32x32" href="/images/logo.png" />
     <style type="text/css">
-    {{ style }}
+    {{{ style }}}
     </style>
   </head>
   <body>

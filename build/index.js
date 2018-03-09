@@ -15,6 +15,7 @@ const createTitleListHTML = require('./title-list')
 const MarkdownIt = require('markdown-it')
 const hljs = require('highlight.js')
 const stylus = require('stylus')
+const CleanCSS = require('clean-css');
 
 const monthName = {
   '01': 'Jan',
@@ -174,8 +175,9 @@ const prehandleTags = (str) => {
   return list
 }
 
+let cleanCss = new CleanCSS()
 let cssText = fs.readFileSync(path.join(conf.CSS_PATH, 'app.stylus'), 'utf8')
-let style = [stylus.render(cssText), getHighlightCss()].join('\n')
+let style = [cleanCss.minify(stylus.render(cssText)).styles, getHighlightCss()].join('\n')
 
 let files = fs.readdirSync(conf.ARCHIVES_PATH)
 let list = []
@@ -285,12 +287,11 @@ let singles = files.filter(fileName => {
 })
 
 
-
 let navHTML = createNavHTML(singles.map(fileName => {
   let title = fileName.split('.')[0]
 
   return {
-    link: `${title.replace(/[ ]/img, '_').toLowerCase()}.html`,
+    link: `/${title.replace(/[ ]/img, '_').toLowerCase()}.html`,
     title: title.replace(/_/img, ' ')
   }
 }))
