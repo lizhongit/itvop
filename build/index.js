@@ -63,20 +63,22 @@ const md = new MarkdownIt({
 })
 
 const getHighlightCss = () => {
-  let files = fs.readdirSync(conf.ASSERTS_PATH)
-  let fileName = ''
-  for (let i = 0; i < files.length; i++) {
-    if (path.extname(files[i]) === '.css') {
-      fileName = files[i]
-      break
-    }
-  }
+  // let files = fs.readdirSync(conf.ASSERTS_PATH)
+  // let fileName = ''
+  // for (let i = 0; i < files.length; i++) {
+  //   if (path.extname(files[i]) === '.css') {
+  //     fileName = files[i]
+  //     break
+  //   }
+  // }
 
-  if (fileName) {
-    return fs.readFileSync(path.join(conf.ASSERTS_PATH, fileName), 'utf8')
-  } else {
-    return ''
-  }  
+  // if (fileName) {
+  //   return fs.readFileSync(path.join(conf.ASSERTS_PATH, fileName), 'utf8')
+  // } else {
+  //   return ''
+  // }  
+
+  return fs.readFileSync(path.join(conf.ASSERTS_PATH, 'github.min.css'), 'utf8')
 }
 
 const intro = (str) => {
@@ -184,13 +186,16 @@ let list = []
 let recommendList = []
 let archiveMap = {}
 let tagMap = {}
-
-let arr = files.filter(fileName => {
+let arr = []
+let arr1 = files.filter(fileName => {
   // console.log(fileName, Number(fileName.split(conf.ARCHIVES_NO_SEPARATOR)[0]) >= 1)
-  return fileName.indexOf(conf.ARCHIVES_NO_SEPARATOR) >= 1 && fileName.split('.')[1] === conf.ARCHIVES_EXTENSION_NAME && Number(fileName.split(conf.ARCHIVES_NO_SEPARATOR)[0]) >= 1
+  return fileName.indexOf(conf.ARCHIVES_NO_SEPARATOR) >= 1 && fileName.split('.')[1] === conf.ARCHIVES_EXTENSION_NAME && parseInt(fileName.split(conf.ARCHIVES_NO_SEPARATOR)[0]) >= 1
 })
-arr = arr.sort((f1, f2) => {
-  return Number(f1.split(conf.ARCHIVES_NO_SEPARATOR)[0]) < Number(f2.split(conf.ARCHIVES_NO_SEPARATOR)[0])
+
+let len = arr1.length
+
+arr1.forEach(f => {
+  arr[len - f.split(conf.ARCHIVES_NO_SEPARATOR)[0]] = f
 })
 
 arr.forEach(fileName => {
