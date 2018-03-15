@@ -249,7 +249,8 @@ body
             border-bottom 1px solid $color_line
 
     pre
-      margin $space_size 0
+      margin-top $space_size
+      margin-bottom $space_size * 2
 
     h1
       font-weight normal
