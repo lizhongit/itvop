@@ -192,11 +192,13 @@ body
       max-width 50%
       margin-left $space_size
       margin-bottom $space_size
+      height auto
 
       &[alt=full]
         margin-left 0
         float none
         max-width 100%
+        height auto
         // width 100%
     a
       color $color_main
