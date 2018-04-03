@@ -257,6 +257,7 @@ body
     h1
       font-weight normal
 
+    h3,
     h2
       font-weight normal
       // padding-left 0.5rem
