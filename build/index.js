@@ -252,7 +252,7 @@ arr.forEach(fileName => {
 
     properties.tags.forEach(item => {
       let t = item.tagName
-      if (!tagMap[t]) {
+      if (!Array.isArray(tagMap[t])) {
         tagMap[t] = []
       }
 
