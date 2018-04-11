@@ -157,16 +157,19 @@ body
 .app-article
   .app-article-header
     .app-article-property
-      display flex
-
       .app-article-tag
+        margin-top $space_size
         margin-right 0.5rem
 
-        span
-          font-size 0.8rem
-          margin-right 0.5rem
-          color white
-          padding 0.5rem 0.5rem 0.3rem 0.5rem
+        a
+          margin-top 0.5rem
+          display inline-block
+
+          span
+            font-size 0.8rem
+            margin-right 0.5rem
+            color white
+            padding 0.5rem 0.5rem 0.3rem 0.5rem
 
       .app-article-date
         margin-right $space_size
@@ -343,7 +346,6 @@ body
   .app-article
     .app-article-header
       .app-article-property
-        flex-direction column
 
         .app-article-date
           padding 0.5rem 0
