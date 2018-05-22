@@ -9,7 +9,7 @@ A simple blogging system written in Markdown format, build a static HTML website
 - Support recommend
 - Auto split less article chars for intro in all the list page
 - Code highlight when build finished
-- Using stylus for style develop
+- Using stylus for styles develop
 
 ## Create a article
 
