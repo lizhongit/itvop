@@ -211,15 +211,18 @@ arr.forEach(fileName => {
     let properties = {}
 
     result[1].split('\n').forEach(item => {
-      let arr = item.split(':')
-      if (arr.length === 2) {
-        let key = arr[0].trim()
+      const index = item.indexOf(':')
+
+      if (index >= 1) {
+        const key = item.substring(0, index).trim()
+        const value = item.substring(index + 1, 10000).trim()
+
         if (key === 'tags') {
-          properties[key] = prehandleTags(arr[1].trim())
+          properties[key] = prehandleTags(value)
         } else if (key === 'recommend') {
-          properties[key] = arr[1].trim() === 'true'
+          properties[key] = value === 'true'
         } else {
-          properties[key] = arr[1].trim() 
+          properties[key] = value
         }
       }
     })
