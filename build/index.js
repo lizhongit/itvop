@@ -265,7 +265,9 @@ arr.forEach(fileName => {
 })
 
 let archiveList = Object.keys(archiveMap)
-    .sort((v1, v2) => v1 < v2)
+    .sort((v1, v2) => {
+      return v1 === v2 ? 1 : Number(v2) - Number(v1)
+    })
     .map(key => {
       let o = archiveMap[key]
       let year = key.substring(0, 4)
@@ -277,7 +279,7 @@ let archiveList = Object.keys(archiveMap)
     })
 
 let tagList = Object.keys(tagMap)
-  .sort((v1, v2) => tagMap[v1].length < tagMap[v2].length)
+  .sort((v1, v2) => tagMap[v2].length - tagMap[v1].length)
   .splice(0, 10)
   .map(key => {
   return {
