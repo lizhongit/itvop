@@ -61,14 +61,14 @@
           </div>
 
           <div class="app-side-item">
-            <div class="app-side-title">Archive</div>
+            <div class="app-side-title">Archivies</div>
             <div class="app-side-list">
               {{{ archive }}}
             </div>
           </div>
 
           <div class="app-side-item">
-            <div class="app-side-title">Tag</div>
+            <div class="app-side-title">Tags</div>
             <div class="app-side-list">
               {{{ tag }}}
             </div>
