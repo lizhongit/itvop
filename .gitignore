@@ -6,3 +6,4 @@ dist/
 .deploy*/
 src/archives/*
 src/static
+.vscode/
