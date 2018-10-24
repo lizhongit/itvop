@@ -47,7 +47,7 @@
         
         <div class="app-side">
           <div class="app-side-item">
-            <div class="app-side-title">Recommand</div>
+            <div class="app-side-title">Recommender</div>
             <div class="app-side-list">
               {{{ recommend }}}
             </div>
