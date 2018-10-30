@@ -24,7 +24,7 @@
         <div class="app-nav">
           <a class="app-logo" href="/">
             <img class="app-logo-image" src="/images/logo.png" />
-            <span class="app-logo-title">琼台博客</span>      
+            <span class="app-logo-title">Nicholas Lee</span>      
           </a>
 
           <div class="app-nav-menu">

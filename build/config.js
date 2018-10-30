@@ -4,7 +4,7 @@ let srcPath = './src'
 let f = (new Date()).getFullYear() - 2011
 
 module.exports = {
-  TITLE: '琼台博客 - qttc.net',
+  TITLE: 'Nicholas Lee - qttc.net',
   DESCRIPTION: `Hi，这是一个专注Web研发技术的个人博客，我从事WEB研发${f}+年，目前在一家小公司负责B/S架构的Web前端研发，博客记录平日工作中遇到的技术问题与解决方式。Be a crazy programer`,
   DESCRIPTION_LENG: 300,
   KEYWORDS: 'JavaScript,React,Vue,WebPack,Python,PHP,Golang,MySQL,GraphQL,NodeJS,D3js,ThreeJS',
