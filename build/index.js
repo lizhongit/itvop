@@ -361,9 +361,9 @@ Object.keys(archiveMap).forEach(key => {
   createListPage(archiveMap[key], `archive_${month}_${year}`)
 })
 
-// Object.keys(tagMap).forEach(key => {
-//   createListPage(tagMap[key], `tag_${key}`)
-// })
+Object.keys(tagMap).forEach(key => {
+  createListPage(tagMap[key], `tag_${key}`)
+})
 
 list.forEach((item, index) => {
   let d = item.properties.date.split('-')
