@@ -52,33 +52,18 @@ const md = new MarkdownIt({
   highlight (str, lang) {
     if (lang && hljs.getLanguage(lang)) {
       try {
-        return `<pre class="hljs"><code class="${lang}">` +
-              hljs.highlight(lang, str, true).value +
-              '</code></pre>'
-      } catch (__) {}
+        return `<pre class="hljs"><code class="${lang}">${hljs.highlight(lang, str, true).value}</code></pre>`
+      } catch (e) {
+        console.error(e);
+      }
     }
 
-    return '<pre class="hljs"><code>' + md.utils.escapeHtml(str) + '</code></pre>'
+    return `<pre class="hljs"><code>${md.utils.escapeHtml(str)}</code></pre>`
   }
 })
 
 const getHighlightCss = () => {
-  // let files = fs.readdirSync(conf.ASSERTS_PATH)
-  // let fileName = ''
-  // for (let i = 0; i < files.length; i++) {
-  //   if (path.extname(files[i]) === '.css') {
-  //     fileName = files[i]
-  //     break
-  //   }
-  // }
-
-  // if (fileName) {
-  //   return fs.readFileSync(path.join(conf.ASSERTS_PATH, fileName), 'utf8')
-  // } else {
-  //   return ''
-  // }  
-
-  return fs.readFileSync(path.join(conf.ASSERTS_PATH, 'github.min.css'), 'utf8')
+  return fs.readFileSync(path.join(`${__dirname}/../node_modules/highlight.js/styles/github.css`), 'utf8')
 }
 
 const intro = (str) => {
@@ -179,7 +164,7 @@ const prehandleTags = (str) => {
 
 let cleanCss = new CleanCSS()
 let cssText = fs.readFileSync(path.join(conf.CSS_PATH, 'app.stylus'), 'utf8')
-let style = [cleanCss.minify(stylus.render(cssText)).styles, getHighlightCss()].join('\n')
+let style = [cleanCss.minify(stylus.render(cssText)).styles, cleanCss.minify(getHighlightCss()).styles].join('\n')
 
 let files = fs.readdirSync(conf.ARCHIVES_PATH)
 let list = []

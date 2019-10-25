@@ -72,7 +72,7 @@
 
           <div class="app-article-notice">
             <p>Article title: <a href="{{ link }}">{{ title }}</a></p>
-            <p>Article link: <a href="{{ link }}">http://www.qttc.net/{{ link }}</a></p>
+            <p>Article link: <a href="{{ link }}">https://www.qttc.net/{{ link }}</a></p>
             <p>Article forward: 转载本站文章请注明作者和出处</p>
           </div>
 

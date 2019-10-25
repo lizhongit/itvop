@@ -17,7 +17,7 @@
     <p>...</p>
   </div>
   <div class="app-article-list-tools">
-    <p class="app-article-link"><a href="{{ link }}" title="{{ properties.title }}">Read the full article</a></p>
+    <p class="app-article-link"><a href="{{ link }}" title="{{ properties.title }}">READ ALL</a></p>
   </div>
 </div>
 {{/each}}
