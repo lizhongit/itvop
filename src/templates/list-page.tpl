@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta name="apple-mobile-web-app-capable" content="yes" />
 
-    <meta name="keywords" content="{{ keywords }}" />
     <meta name="description" content="{{ description }}" />
     <meta http-equiv="X-UA-Compatible" content="edge" />
     <meta name="renderer" content="webkit" />
@@ -28,13 +27,13 @@
           </a>
 
           <div class="app-nav-menu">
-            <a class="ad-link" target="_blank" href="https://www.vultr.com/?ref=7073914">A high performance and more than 15 locations VPS just only $2.5/Month</a>
+            {{!-- <a class="ad-link" target="_blank" href="https://www.vultr.com/?ref=7073914">A high performance and more than 15 locations VPS just only $2.5/Month</a> --}}
             {{{ nav }}}
           </div>
         </div>
 
         <div class="app-brand">
-          Be a crazy programer
+          Be a crazy programmer
         </div>
       </div>
 
@@ -47,26 +46,11 @@
         
         <div class="app-side">
           <div class="app-side-item">
-            <div class="app-side-title">Recommender</div>
-            <div class="app-side-list">
-              {{{ recommend }}}
-            </div>
-          </div>
-
-          <div class="app-side-item">
             <div class="app-side-title">Archivies</div>
             <div class="app-side-list">
               {{{ archive }}}
             </div>
           </div>
-
-          <div class="app-side-item">
-            <div class="app-side-title">Tags</div>
-            <div class="app-side-list">
-              {{{ tag }}}
-            </div>
-          </div>
-
         </div>
       </div>
     </div>

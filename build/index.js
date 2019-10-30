@@ -142,25 +142,25 @@ const randColor = () => {
 
 const colorMap = {}
 
-const prehandleTags = (str) => {
-  let list = []
+// const prehandleTags = (str) => {
+//   let list = []
 
-  str.trim().split(' ').forEach(tag => {
-    if (tag) {
-      let color = colorMap[tag]
-      if (!color) {
-        color = randColor()
-        colorMap[tag] = color
-      }
-      list.push({
-        tagName: tag,
-        color
-      })
-    }
-  })
+//   str.trim().split(' ').forEach(tag => {
+//     if (tag) {
+//       let color = colorMap[tag]
+//       if (!color) {
+//         color = randColor()
+//         colorMap[tag] = color
+//       }
+//       list.push({
+//         tagName: tag,
+//         color
+//       })
+//     }
+//   })
 
-  return list
-}
+//   return list
+// }
 
 let cleanCss = new CleanCSS()
 let cssText = fs.readFileSync(path.join(conf.CSS_PATH, 'app.stylus'), 'utf8')
@@ -203,7 +203,7 @@ arr.forEach(fileName => {
         const value = item.substring(index + 1, 10000).trim()
 
         if (key === 'tags') {
-          properties[key] = prehandleTags(value)
+          // properties[key] = prehandleTags(value)
         } else if (key === 'recommend') {
           properties[key] = value === 'true'
         } else {
@@ -219,7 +219,7 @@ arr.forEach(fileName => {
       introHTML: md.render(intro(content.substr(i.index + 3))),
       html: md.render(content.substr(i.index + 3)),
       link: `${fileName.split('.')[0].replace(/[ ]/g, '_').toLowerCase()}.html`,
-      tagsHTML: createTagsHTML(properties.tags),
+      // tagsHTML: createTagsHTML(properties.tags),
       fileName
     }
 
@@ -238,14 +238,14 @@ arr.forEach(fileName => {
 
     archiveMap[key].push(map)
 
-    properties.tags.forEach(item => {
-      let t = item.tagName
-      if (!Array.isArray(tagMap[t])) {
-        tagMap[t] = []
-      }
+    // properties.tags.forEach(item => {
+    //   let t = item.tagName
+    //   if (!Array.isArray(tagMap[t])) {
+    //     tagMap[t] = []
+    //   }
 
-      tagMap[t].push(map)
-    })
+    //   tagMap[t].push(map)
+    // })
     // archives
   } else {
     console.error(`Error: ${path.join(conf.ARCHIVES_PATH, fileName)} can't parse!`)
@@ -266,15 +266,15 @@ let archiveList = Object.keys(archiveMap)
       }
     })
 
-let tagList = Object.keys(tagMap)
-  .sort((v1, v2) => tagMap[v2].length - tagMap[v1].length)
-  .splice(0, 10)
-  .map(key => {
-  return {
-    title: `${key} (${ tagMap[key].length })`,
-    link: `tag_${key.toLowerCase()}_1.html`
-  }
-})
+// let tagList = Object.keys(tagMap)
+//   .sort((v1, v2) => tagMap[v2].length - tagMap[v1].length)
+//   .splice(0, 10)
+//   .map(key => {
+//   return {
+//     title: `${key} (${ tagMap[key].length })`,
+//     link: `tag_${key.toLowerCase()}_1.html`
+//   }
+// })
 
 let singles = files.filter(fileName => {
   // console.log(fileName, Number(fileName.split(conf.ARCHIVES_NO_SEPARATOR)[0]) >= 1)
@@ -293,7 +293,7 @@ let navHTML = createNavHTML(singles.map(fileName => {
 
 // console.log(archiveList)
 
-let tagHTML = createTitleListHTML(tagList)
+// let tagHTML = createTitleListHTML(tagList)
 let archiveHTML = createTitleListHTML(archiveList)
 let recommendHTML = createTitleListHTML(recommendList)
 
@@ -311,7 +311,7 @@ let createListPage = (list, prefix) => {
       let listHtml = createListHTML(temp)
       let pageHtml = createPageHTML(prefix, pages, page)
       let title = ''
-      if (prefix === 'index') {
+      if (prefix === 'page') {
         title = page === 1 ? conf.TITLE : [conf.TITLE, `Page ${page}`].join(` ${conf.TITLE_SEPARATOR} `)
       } else {
         title = [conf.TITLE, prefix.replace(/_/gm, ` ${conf.TITLE_SEPARATOR} `), `Page ${page}`].join(` ${conf.TITLE_SEPARATOR} `)
@@ -322,7 +322,7 @@ let createListPage = (list, prefix) => {
         nav: navHTML,
         keywords: conf.KEYWORDS,
         description: conf.DESCRIPTION,
-        tag: tagHTML,
+        // tag: tagHTML,
         archive: archiveHTML,
         recommend: recommendHTML,
         style,
@@ -331,14 +331,14 @@ let createListPage = (list, prefix) => {
         pages: pageHtml
       })
       fs.writeFileSync(path.join(conf.DIST_PATH, `${prefix.toLowerCase()}_${page}.html`), html, 'utf8')
-      if (page === 1 && prefix === 'index') {
-        fs.writeFileSync(path.join(conf.DIST_PATH, `${prefix.toLowerCase()}.html`), html, 'utf8')
+      if (page === 1 && prefix === 'page') {
+        fs.writeFileSync(path.join(conf.DIST_PATH, `index.html`), html, 'utf8')
       }
     }
   })
 }
 
-createListPage(list, 'index')
+createListPage(list, 'page')
 
 Object.keys(archiveMap).forEach(key => {
   let year = key.substring(0, 4)
@@ -346,9 +346,9 @@ Object.keys(archiveMap).forEach(key => {
   createListPage(archiveMap[key], `archive_${month}_${year}`)
 })
 
-Object.keys(tagMap).forEach(key => {
-  createListPage(tagMap[key], `tag_${key}`)
-})
+// Object.keys(tagMap).forEach(key => {
+//   createListPage(tagMap[key], `tag_${key}`)
+// })
 
 list.forEach((item, index) => {
   let d = item.properties.date.split('-')
@@ -369,7 +369,7 @@ list.forEach((item, index) => {
   let articleHtml = createArticlePageHTML({
     nav: navHTML,
     random: randomHTML,
-    keywords: item.properties.tags.map(item => item.tagName).join(','),
+    // keywords: item.properties.tags.map(item => item.tagName).join(','),
     description: description(item.content),
     date: item.properties.date,
     style,
@@ -378,12 +378,16 @@ list.forEach((item, index) => {
     link: item.link,
     articleTag: item.tagsHTML,
     article: item.html,
-    tag: tagHTML,
+    // tag: tagHTML,
     archive: archiveHTML,
     recommend: recommendHTML
   })
   fs.writeFileSync(path.join(conf.DIST_PATH, item.link), articleHtml, 'utf8')
-  fs.writeFileSync(path.join(conf.DIST_PATH, `${d[0]}${d[1]}${item.fileName.split('_')[0]}.html`), articleHtml, 'utf8')
+
+  const id = item.fileName.split('_')[0];
+  if (id <= 492) {
+    fs.writeFileSync(path.join(conf.DIST_PATH, `${d[0]}${d[1]}${id}.html`), articleHtml, 'utf8')
+  }
 })
 
 singles.forEach(fileName => {
@@ -397,7 +401,7 @@ singles.forEach(fileName => {
     style,
     title: conf.TITLE,
     article: md.render(text),
-    tag: tagHTML,
+    // tag: tagHTML,
     archive: archiveHTML,
     recommend: recommendHTML
   })
