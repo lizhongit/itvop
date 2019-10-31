@@ -67,10 +67,11 @@ const getHighlightCss = () => {
 }
 
 const intro = (str) => {
-  let list = str.split('\n')
-  let preReg = /^```(.*)/im
+  const list = str.split('\n')
+  const preReg = /^```(.*)/im
+  const arr = []
+
   let isInPre = false
-  let arr = []
   let count = 0
   let total = 2
   let item = null
@@ -162,38 +163,38 @@ const colorMap = {}
 //   return list
 // }
 
-let cleanCss = new CleanCSS()
-let cssText = fs.readFileSync(path.join(conf.CSS_PATH, 'app.stylus'), 'utf8')
-let style = [cleanCss.minify(stylus.render(cssText)).styles, cleanCss.minify(getHighlightCss()).styles].join('\n')
+const cleanCss = new CleanCSS()
+const cssText = fs.readFileSync(path.join(conf.CSS_PATH, 'app.stylus'), 'utf8')
+const style = [cleanCss.minify(stylus.render(cssText)).styles, cleanCss.minify(getHighlightCss()).styles].join('\n')
 
-let files = fs.readdirSync(conf.ARCHIVES_PATH)
-let list = []
-let recommendList = []
-let archiveMap = {}
-let tagMap = {}
-let arr = []
-let arr1 = files.filter(fileName => {
+const files = fs.readdirSync(conf.ARCHIVES_PATH)
+const list = []
+const recommendList = []
+const archiveMap = {}
+const tagMap = {}
+const arr = []
+const arr1 = files.filter(fileName => {
   // console.log(fileName, Number(fileName.split(conf.ARCHIVES_NO_SEPARATOR)[0]) >= 1)
   return fileName.indexOf(conf.ARCHIVES_NO_SEPARATOR) >= 1 && fileName.split('.')[1] === conf.ARCHIVES_EXTENSION_NAME && parseInt(fileName.split(conf.ARCHIVES_NO_SEPARATOR)[0]) >= 1
 })
 
-let len = arr1.length
+const len = arr1.length
 
 arr1.forEach(f => {
   arr[len - f.split(conf.ARCHIVES_NO_SEPARATOR)[0]] = f
 })
 
 arr.forEach(fileName => {
-  let content = fs.readFileSync(path.join(conf.ARCHIVES_PATH, fileName), 'utf8')
-  let reg = /\-\-\-(([\s\S])*?)\-\-\-/gim
+  const content = fs.readFileSync(path.join(conf.ARCHIVES_PATH, fileName), 'utf8')
+  const reg = /\-\-\-(([\s\S])*?)\-\-\-/gim
 
-  let result = reg.exec(content)
+  const result = reg.exec(content)
   if (result) {
-    let reg1 = /\-\-\-/gim
+    const reg1 = /\-\-\-/gim
     let i = reg1.exec(content)
     i = reg1.exec(content)
     // console.log(i)
-    let properties = {}
+    const properties = {}
 
     result[1].split('\n').forEach(item => {
       const index = item.indexOf(':')
@@ -212,7 +213,7 @@ arr.forEach(fileName => {
       }
     })
 
-    let map = {
+    const map = {
       properties,
       title: properties.title,
       content: content.substr(i.index + 3),
@@ -228,9 +229,9 @@ arr.forEach(fileName => {
       recommendList.push(map)
     }
 
-    let tmp = properties.date.split('-')
-    let month = Number(tmp[1])
-    let key = `${tmp[0]}${month >= 10 ? month : '0' + String(month)}`
+    const tmp = properties.date.split('-')
+    const month = Number(tmp[1])
+    const key = `${tmp[0]}${month >= 10 ? month : '0' + String(month)}`
 
     if (!archiveMap[key]) {
       archiveMap[key] = []
@@ -252,14 +253,14 @@ arr.forEach(fileName => {
   }
 })
 
-let archiveList = Object.keys(archiveMap)
+const archiveList = Object.keys(archiveMap)
     .sort((v1, v2) => {
       return v1 === v2 ? 1 : Number(v2) - Number(v1)
     })
     .map(key => {
-      let o = archiveMap[key]
-      let year = key.substring(0, 4)
-      let month = monthName[key.substr(4)]
+      const o = archiveMap[key]
+      const year = key.substring(0, 4)
+      const month = monthName[key.substr(4)]
       return {
         title: `${month}, ${year} (${o.length})`,
         link: `archive_${month.toLowerCase()}_${year}_1.html`
@@ -276,14 +277,14 @@ let archiveList = Object.keys(archiveMap)
 //   }
 // })
 
-let singles = files.filter(fileName => {
+const singles = files.filter(fileName => {
   // console.log(fileName, Number(fileName.split(conf.ARCHIVES_NO_SEPARATOR)[0]) >= 1)
-  return fileName.indexOf(conf.ARCHIVES_NO_SEPARATOR) >= 1 && fileName.split('.')[1] === conf.ARCHIVES_EXTENSION_NAME && isNaN(fileName.split(conf.ARCHIVES_NO_SEPARATOR)[0])
+  return fileName.split('.')[1] === conf.ARCHIVES_EXTENSION_NAME && isNaN(fileName.split(conf.ARCHIVES_NO_SEPARATOR)[0])
 })
 
 
-let navHTML = createNavHTML(singles.map(fileName => {
-  let title = fileName.split('.')[0]
+const navHTML = createNavHTML(singles.map(fileName => {
+  const title = fileName.split('.')[0]
 
   return {
     link: `/${title.replace(/[ ]/img, '_').toLowerCase()}.html`,
@@ -294,10 +295,10 @@ let navHTML = createNavHTML(singles.map(fileName => {
 // console.log(archiveList)
 
 // let tagHTML = createTitleListHTML(tagList)
-let archiveHTML = createTitleListHTML(archiveList)
-let recommendHTML = createTitleListHTML(recommendList)
+const archiveHTML = createTitleListHTML(archiveList)
+const recommendHTML = createTitleListHTML(recommendList)
 
-let createListPage = (list, prefix) => {
+const createListPage = (list, prefix) => {
   let page = 0
   let temp = []
   
@@ -308,27 +309,29 @@ let createListPage = (list, prefix) => {
   
     if ((index + 1) % conf.ARTICLES_PER_PAGE === 0 || index === list.length - 1) {
       ++page
-      let listHtml = createListHTML(temp)
-      let pageHtml = createPageHTML(prefix, pages, page)
-      let title = ''
+      const listHtml = createListHTML(temp)
+      const pageHtml = createPageHTML(prefix, pages, page)
+      let title = [conf.TITLE, prefix.replace(/_/gm, ` ${conf.TITLE_SEPARATOR} `), `Page ${page}`].join(` ${conf.TITLE_SEPARATOR} `)
+
       if (prefix === 'page') {
         title = page === 1 ? conf.TITLE : [conf.TITLE, `Page ${page}`].join(` ${conf.TITLE_SEPARATOR} `)
-      } else {
-        title = [conf.TITLE, prefix.replace(/_/gm, ` ${conf.TITLE_SEPARATOR} `), `Page ${page}`].join(` ${conf.TITLE_SEPARATOR} `)
       }
   
       temp = []
-      let html = createListPageHTML({
+      const html = createListPageHTML({
+        top_ad_text: conf.TOP_AD_TEXT,
+        top_ad_link: conf.TOP_AD_LINK,
+        brand_text: conf.BRAND_TEXT,
         nav: navHTML,
         keywords: conf.KEYWORDS,
         description: conf.DESCRIPTION,
         // tag: tagHTML,
         archive: archiveHTML,
         recommend: recommendHTML,
+        articles: listHtml,
+        pages: pageHtml,
         style,
         title,
-        articles: listHtml,
-        pages: pageHtml
       })
       fs.writeFileSync(path.join(conf.DIST_PATH, `${prefix.toLowerCase()}_${page}.html`), html, 'utf8')
       if (page === 1 && prefix === 'page') {
@@ -341,8 +344,8 @@ let createListPage = (list, prefix) => {
 createListPage(list, 'page')
 
 Object.keys(archiveMap).forEach(key => {
-  let year = key.substring(0, 4)
-  let month = monthName[key.substr(4)]
+  const year = key.substring(0, 4)
+  const month = monthName[key.substr(4)]
   createListPage(archiveMap[key], `archive_${month}_${year}`)
 })
 
@@ -351,9 +354,9 @@ Object.keys(archiveMap).forEach(key => {
 // })
 
 list.forEach((item, index) => {
-  let d = item.properties.date.split('-')
+  const d = item.properties.date.split('-')
   
-  let tmp = []
+  const tmp = []
   for (let i = 0; i < list.length; i++) {
     if (i !== index) {
       tmp.push(i)      
@@ -361,12 +364,15 @@ list.forEach((item, index) => {
   }
 
   shuffle(tmp)
-  let start = randInt(0, tmp.length - 2)
-  let randomList = [list[tmp[start]], list[tmp[++start]]]
+  const start = randInt(0, tmp.length - 2)
+  const randomList = [list[tmp[start]], list[tmp[start + 1]]]
 
-  let randomHTML = createRandomHTML(randomList)
+  const randomHTML = createRandomHTML(randomList)
 
-  let articleHtml = createArticlePageHTML({
+  const articleHtml = createArticlePageHTML({
+    top_ad_text: conf.TOP_AD_TEXT,
+    top_ad_link: conf.TOP_AD_LINK,
+    brand_text: conf.BRAND_TEXT,
     nav: navHTML,
     random: randomHTML,
     // keywords: item.properties.tags.map(item => item.tagName).join(','),
@@ -391,10 +397,13 @@ list.forEach((item, index) => {
 })
 
 singles.forEach(fileName => {
-  let f = `${fileName.split('.')[0].replace(/[ ]/img, '').toLowerCase()}.html`
-  let text = fs.readFileSync(path.join(conf.ARCHIVES_PATH, fileName), 'utf8')
+  const f = `${fileName.split('.')[0].replace(/[ ]/img, '').toLowerCase()}.html`
+  const text = fs.readFileSync(path.join(conf.ARCHIVES_PATH, fileName), 'utf8')
 
-  let html = createSinglePageHTML({
+  const html = createSinglePageHTML({
+    top_ad_text: conf.TOP_AD_TEXT,
+    top_ad_link: conf.TOP_AD_LINK,
+    brand_text: conf.BRAND_TEXT,
     nav: navHTML,
     keywords: conf.KEYWORDS,
     description: conf.DESCRIPTION,
@@ -408,3 +417,5 @@ singles.forEach(fileName => {
 
   fs.writeFileSync(path.join(conf.DIST_PATH, f), html, 'utf8')
 })
+
+fs.copyFileSync(path.join(conf.SRC_PATH, 'public/ads.txt'), path.join(conf.DIST_PATH, 'ads.txt'));

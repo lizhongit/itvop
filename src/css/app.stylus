@@ -42,9 +42,6 @@ body
     width 100%
     margin $space_size auto
     background-color $color_line
-
-  .ad-link
-    color $color_gray
   
   .app-header
     width 100%
@@ -74,9 +71,13 @@ body
           color $color_gray
 
       .app-nav-menu
-        color $color_drak
+
+        a.ad-link
+          color $color_main
+
         a
           margin-left $space_size
+          color $color_gray
 
           &:hover
             color $color_main
@@ -283,6 +284,7 @@ body
 
     a
       color $color_main
+      word-break break-all
 
   .app-random
     display flex

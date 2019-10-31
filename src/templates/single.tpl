@@ -16,6 +16,15 @@
     <style type="text/css">
     {{{ style }}}
     </style>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-2124912095035737",
+            enable_page_level_ads: true
+      });
+    </script>
+
   </head>
   <body>
     <div class="app">
@@ -27,13 +36,13 @@
           </a>
 
           <div class="app-nav-menu">
-            {{!-- <a class="ad-link" target="_blank" href="https://www.vultr.com/?ref=7073914">A high performance and more than 15 locations VPS just only $2.5/Month</a> --}}
+            <a class="ad-link" target="_blank" href="{{ top_ad_link }}">{{ top_ad_text }}</a>
             {{{ nav }}}
           </div>
         </div>
 
         <div class="app-brand">
-          Be a crazy programmer
+          {{ brand_text }}
         </div>
       </div>
 
