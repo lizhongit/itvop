@@ -32,6 +32,21 @@ const monthName = {
   '12': 'Dec'
 }
 
+const monthFullsName = {
+  '01': 'January',
+  '02': 'February',
+  '03': 'March',
+  '04': 'April',
+  '05': 'May',
+  '06': 'June',
+  '07': 'July',
+  '08': 'August',
+  '09': 'September',
+  '10': 'October',
+  '11': 'November',
+  '12': 'December'
+}
+
 if (fs.existsSync(conf.DIST_PATH)) {
   fs.rmdirSync(conf.DIST_PATH)
 }
@@ -141,6 +156,11 @@ const randColor = () => {
   return `rgb(${randInt(0, 200)}, ${randInt(0, 200)}, ${randInt(0, 200)})`
 }
 
+const formatDate = (txt) => {
+  const arr = txt.split('-')
+  return `${monthFullsName[arr[1]]} ${arr[2]}, ${arr[0]}`
+};
+
 const colorMap = {}
 
 // const prehandleTags = (str) => {
@@ -207,6 +227,9 @@ arr.forEach(fileName => {
           // properties[key] = prehandleTags(value)
         } else if (key === 'recommend') {
           properties[key] = value === 'true'
+        } else if (key === 'date')  {
+          properties[key] = value
+          properties.formatDate = formatDate(value);
         } else {
           properties[key] = value
         }
@@ -378,6 +401,7 @@ list.forEach((item, index) => {
     // keywords: item.properties.tags.map(item => item.tagName).join(','),
     description: description(item.content),
     date: item.properties.date,
+    formatDate: item.properties.formatDate,
     style,
     tagTitle: [item.title, conf.TITLE].join(` ${conf.TITLE_SEPARATOR} `),
     title: item.title,

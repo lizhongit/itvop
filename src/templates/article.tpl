@@ -51,7 +51,7 @@
         <div class="app-container app-article">
           <div class="app-article-header">
             <div class="app-article-property">
-              <div class="app-article-date">{{ date }}</div>
+              <div class="app-article-date">{{ formatDate }}</div>
             </div>
             <div class="app-article-title">{{ title }}</div>
           </div>
