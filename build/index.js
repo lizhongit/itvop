@@ -242,7 +242,8 @@ arr.forEach(fileName => {
       content: content.substr(i.index + 3),
       introHTML: md.render(intro(content.substr(i.index + 3))),
       html: md.render(content.substr(i.index + 3)),
-      link: `${fileName.split('.')[0].replace(/[ ]/g, '_').toLowerCase()}.html`,
+      link: `${conf.URL_PREFIX}/${fileName.split('.')[0].replace(/[ ]/g, '_').toLowerCase()}.html`,
+      path: `${fileName.split('.')[0].replace(/[ ]/g, '_').toLowerCase()}.html`,
       // tagsHTML: createTagsHTML(properties.tags),
       fileName
     }
@@ -286,7 +287,8 @@ const archiveList = Object.keys(archiveMap)
       const month = monthName[key.substr(4)]
       return {
         title: `${month}, ${year} (${o.length})`,
-        link: `archive_${month.toLowerCase()}_${year}_1.html`
+        link: `${conf.URL_PREFIX}/archive_${month.toLowerCase()}_${year}_1.html`,
+        path: `archive_${month.toLowerCase()}_${year}_1.html`,
       }
     })
 
@@ -310,7 +312,8 @@ const navHTML = createNavHTML(singles.map(fileName => {
   const title = fileName.split('.')[0]
 
   return {
-    link: `/${title.replace(/[ ]/img, '_').toLowerCase()}.html`,
+    link: `${conf.URL_PREFIX}/${title.replace(/[ ]/img, '_').toLowerCase()}.html`,
+    path: `${title.replace(/[ ]/img, '_').toLowerCase()}.html`,
     title: title.replace(/_/img, ' ')
   }
 }))
@@ -319,7 +322,7 @@ const navHTML = createNavHTML(singles.map(fileName => {
 
 // let tagHTML = createTitleListHTML(tagList)
 const archiveHTML = createTitleListHTML(archiveList)
-const recommendHTML = createTitleListHTML(recommendList)
+// const recommendHTML = createTitleListHTML(recommendList)
 
 const createListPage = (list, prefix) => {
   let page = 0
@@ -333,11 +336,11 @@ const createListPage = (list, prefix) => {
     if ((index + 1) % conf.ARTICLES_PER_PAGE === 0 || index === list.length - 1) {
       ++page
       const listHtml = createListHTML(temp)
-      const pageHtml = createPageHTML(prefix, pages, page)
-      let title = [conf.TITLE, prefix.replace(/_/gm, ` ${conf.TITLE_SEPARATOR} `), `Page ${page}`].join(` ${conf.TITLE_SEPARATOR} `)
+      const pageHtml = createPageHTML(`${conf.URL_PREFIX}/${prefix}`, pages, page)
+      let title = [prefix.replace(/_/gm, ` ${conf.TITLE_SEPARATOR} `), `Page ${page}`, conf.TITLE].join(` ${conf.TITLE_SEPARATOR} `)
 
       if (prefix === 'page') {
-        title = page === 1 ? conf.TITLE : [conf.TITLE, `Page ${page}`].join(` ${conf.TITLE_SEPARATOR} `)
+        title = page === 1 ? conf.TITLE : [`Page ${page}`, conf.TITLE].join(` ${conf.TITLE_SEPARATOR} `)
       }
   
       temp = []
@@ -350,9 +353,10 @@ const createListPage = (list, prefix) => {
         description: conf.DESCRIPTION,
         // tag: tagHTML,
         archive: archiveHTML,
-        recommend: recommendHTML,
+        // recommend: recommendHTML,
         articles: listHtml,
         pages: pageHtml,
+        host_link: conf.URL_PREFIX,
         style,
         title,
       })
@@ -396,6 +400,7 @@ list.forEach((item, index) => {
     top_ad_text: conf.TOP_AD_TEXT,
     top_ad_link: conf.TOP_AD_LINK,
     brand_text: conf.BRAND_TEXT,
+    host_link: conf.URL_PREFIX,
     nav: navHTML,
     random: randomHTML,
     // keywords: item.properties.tags.map(item => item.tagName).join(','),
@@ -410,11 +415,11 @@ list.forEach((item, index) => {
     article: item.html,
     // tag: tagHTML,
     archive: archiveHTML,
-    recommend: recommendHTML
+    // recommend: recommendHTML
   })
-  fs.writeFileSync(path.join(conf.DIST_PATH, item.link), articleHtml, 'utf8')
+  fs.writeFileSync(path.join(conf.DIST_PATH, item.path), articleHtml, 'utf8')
 
-  const id = item.fileName.split('_')[0];
+  const id = Number(item.fileName.split('_')[0]);
   if (id <= 492) {
     fs.writeFileSync(path.join(conf.DIST_PATH, `${d[0]}${d[1]}${id}.html`), articleHtml, 'utf8')
   }
@@ -429,14 +434,15 @@ singles.forEach(fileName => {
     top_ad_link: conf.TOP_AD_LINK,
     brand_text: conf.BRAND_TEXT,
     nav: navHTML,
+    host_link: conf.URL_PREFIX,
     keywords: conf.KEYWORDS,
     description: conf.DESCRIPTION,
     style,
-    title: conf.TITLE,
+    title: [fileName.split('.')[0], conf.TITLE].join(` ${conf.TITLE_SEPARATOR} `),
     article: md.render(text),
     // tag: tagHTML,
     archive: archiveHTML,
-    recommend: recommendHTML
+    // recommend: recommendHTML
   })
 
   fs.writeFileSync(path.join(conf.DIST_PATH, f), html, 'utf8')

@@ -22,6 +22,7 @@ module.exports = {
   ARCHIVES_NO_SEPARATOR: '_',
   ARCHIVES_PATH: path.join(srcPath, 'archives'),
   TEMPLATES_PATH: path.join(srcPath, 'templates'),
+  URL_PREFIX: 'https://www.qttc.net',
   MAIN_HOST: 'qttc.net',
   TPL_LIST: 'list.tpl',
   TPL_PAGE: 'page.tpl',
