@@ -6,7 +6,7 @@ const client = new OSS({
   region: 'oss-cn-beijing',
   accessKeyId: 'LTAI4FjuHosYWv3G4M6AkDW1',
   accessKeySecret: 'FHK7ZWIVeA4Ou681eJWviKaH5zqqsH',
-  bucket: 'test-qttc',
+  bucket: 'qttc',
 });
 
 const put = async (file) => {

@@ -449,3 +449,4 @@ singles.forEach(fileName => {
 })
 
 fs.copyFileSync(path.join(conf.SRC_PATH, 'public/ads.txt'), path.join(conf.DIST_PATH, 'ads.txt'));
+fs.copyFileSync(path.join(conf.SRC_PATH, 'public/404.html'), path.join(conf.DIST_PATH, '404.html'));
