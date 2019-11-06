@@ -418,14 +418,6 @@ list.forEach((item, index) => {
     // recommend: recommendHTML
   })
   fs.writeFileSync(path.join(conf.DIST_PATH, item.path), articleHtml, 'utf8')
-
-  // const id = Number(item.fileName.split('_')[0]);
-  // if (id <= 492) {
-    // const oldFileName = `${d[0]}${d[1]}${id}.html`;
-    // fs.writeFileSync(path.join(conf.DIST_PATH, oldFileName), articleHtml, 'utf8')
-    // const str = `location /${oldFileName} { return 301 https://www.qttc.net/${item.path}; }`;
-    // console.log(str);
-  // }
 })
 
 singles.forEach(fileName => {
@@ -451,5 +443,9 @@ singles.forEach(fileName => {
   fs.writeFileSync(path.join(conf.DIST_PATH, f), html, 'utf8')
 })
 
-fs.copyFileSync(path.join(conf.SRC_PATH, 'public/ads.txt'), path.join(conf.DIST_PATH, 'ads.txt'));
-fs.copyFileSync(path.join(conf.SRC_PATH, 'public/404.html'), path.join(conf.DIST_PATH, '404.html'));
+const publicFiles = fs.readdirSync(path.join(conf.SRC_PATH, 'public'));
+publicFiles.forEach((fileName) => {
+  if (fileName !== '.DS_Store') {
+    fs.copyFileSync(path.join(conf.SRC_PATH, `public/${fileName}`), path.join(conf.DIST_PATH, fileName));
+  }
+});

@@ -1,10 +1,10 @@
 {
-  "name": "blog",
-  "version": "6.0.0",
+  "name": "itvop",
+  "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "rm -rf ./dist && node ./build/index.js && cp -R ./src/images ./dist && cp -R ./src/static ./dist",
+    "build": "rm -rf ./docs && node ./build/index.js && cp -R ./src/static ./docs",
     "serve": "node build/server-dist.js",
     "deploy": "node build/deploy.js"
   },

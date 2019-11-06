@@ -1,15 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-151182268-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
 
-      gtag('config', 'UA-151182268-1');
-    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -21,18 +13,9 @@
     <meta name="author" content="Nicholas Lee" />
 
     <title>{{ title }}</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="/images/logo.png" />
     <style type="text/css">
     {{{ style }}}
     </style>
-
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <script>
-      (adsbygoogle = window.adsbygoogle || []).push({
-            google_ad_client: "ca-pub-2124912095035737",
-            enable_page_level_ads: true
-      });
-    </script>
 
   </head>
   <body>
@@ -40,8 +23,7 @@
       <div class="app-header">
         <div class="app-nav">
           <a class="app-logo" href="{{ host_link }}">
-            <img class="app-logo-image" src="/images/logo.png" />
-            <span class="app-logo-title">Quest Tech</span>      
+            <span class="app-logo-title">ITVOP</span>
           </a>
 
           <div class="app-nav-menu">
