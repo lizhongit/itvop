@@ -43,7 +43,7 @@
         <div class="app-nav">
           <a class="app-logo" href="{{ host_link }}">
             <img class="app-logo-image" src="/images/logo.png" />
-            <span class="app-logo-title">Nicholas Lee</span>      
+            <span class="app-logo-title">Quest Tech</span>      
           </a>
 
           <div class="app-nav-menu">

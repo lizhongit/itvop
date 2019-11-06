@@ -419,10 +419,13 @@ list.forEach((item, index) => {
   })
   fs.writeFileSync(path.join(conf.DIST_PATH, item.path), articleHtml, 'utf8')
 
-  const id = Number(item.fileName.split('_')[0]);
-  if (id <= 492) {
-    fs.writeFileSync(path.join(conf.DIST_PATH, `${d[0]}${d[1]}${id}.html`), articleHtml, 'utf8')
-  }
+  // const id = Number(item.fileName.split('_')[0]);
+  // if (id <= 492) {
+    // const oldFileName = `${d[0]}${d[1]}${id}.html`;
+    // fs.writeFileSync(path.join(conf.DIST_PATH, oldFileName), articleHtml, 'utf8')
+    // const str = `location /${oldFileName} { return 301 https://www.qttc.net/${item.path}; }`;
+    // console.log(str);
+  // }
 })
 
 singles.forEach(fileName => {
