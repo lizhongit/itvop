@@ -69,3 +69,4 @@ node_modules/
 src/archives/*
 src/static
 .vscode/
+build/deploy.js
