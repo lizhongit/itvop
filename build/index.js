@@ -1,5 +1,7 @@
 'use strict'
 
+const minify = require('html-minifier').minify;
+const Handlebars = require('handlebars')
 const fs = require('fs')
 const path = require('path')
 const conf = require('./config')
@@ -9,7 +11,6 @@ const createListPageHTML = require('./list-page')
 const createArticlePageHTML = require('./article')
 const createSinglePageHTML = require('./single')
 const createRandomHTML = require('./random')
-const createTagsHTML = require('./tags')
 const createNavHTML = require('./nav')
 const createTitleListHTML = require('./title-list')
 const MarkdownIt = require('markdown-it')
@@ -47,11 +48,27 @@ const monthFullsName = {
   '12': 'December'
 }
 
+const analyticsCode = fs.readFileSync(path.join(conf.TEMPLATES_PATH, conf.TPL_GOOGLE_ANALYTICS), 'utf8')
+
+Handlebars.registerPartial('header', fs.readFileSync(path.join(conf.TEMPLATES_PATH, conf.TPL_HEADER), 'utf8'))
+Handlebars.registerPartial('footer', fs.readFileSync(path.join(conf.TEMPLATES_PATH, conf.TPL_FOOTER), 'utf8'))
+Handlebars.registerPartial('disqus', fs.readFileSync(path.join(conf.TEMPLATES_PATH, conf.TPL_DISQUS), 'utf8'))
+Handlebars.registerPartial('analytics', analyticsCode)
+
 if (fs.existsSync(conf.DIST_PATH)) {
-  fs.rmdirSync(conf.DIST_PATH)
+  fs.rmdirSync(conf.DIST_PATH, {
+    recursive: true,
+  })
 }
 
 fs.mkdirSync(conf.DIST_PATH, '0755')
+
+
+const minifyHTML = (html) => {
+  return minify(html, {
+    collapseWhitespace: true,
+  });
+};
 
 const shuffle = (a) => {
   let j, x, i
@@ -160,28 +177,6 @@ const formatDate = (txt) => {
   const arr = txt.split('-')
   return `${monthFullsName[arr[1]]} ${arr[2]}, ${arr[0]}`
 };
-
-const colorMap = {}
-
-// const prehandleTags = (str) => {
-//   let list = []
-
-//   str.trim().split(' ').forEach(tag => {
-//     if (tag) {
-//       let color = colorMap[tag]
-//       if (!color) {
-//         color = randColor()
-//         colorMap[tag] = color
-//       }
-//       list.push({
-//         tagName: tag,
-//         color
-//       })
-//     }
-//   })
-
-//   return list
-// }
 
 const cleanCss = new CleanCSS()
 const cssText = fs.readFileSync(path.join(conf.CSS_PATH, 'app.stylus'), 'utf8')
@@ -360,9 +355,9 @@ const createListPage = (list, prefix) => {
         style,
         title,
       })
-      fs.writeFileSync(path.join(conf.DIST_PATH, `${prefix.toLowerCase()}_${page}.html`), html, 'utf8')
+      fs.writeFileSync(path.join(conf.DIST_PATH, `${prefix.toLowerCase()}_${page}.html`), minifyHTML(html), 'utf8')
       if (page === 1 && prefix === 'page') {
-        fs.writeFileSync(path.join(conf.DIST_PATH, `index.html`), html, 'utf8')
+        fs.writeFileSync(path.join(conf.DIST_PATH, `index.html`), minifyHTML(html), 'utf8')
       }
     }
   })
@@ -408,16 +403,14 @@ list.forEach((item, index) => {
     date: item.properties.date,
     formatDate: item.properties.formatDate,
     style,
-    tagTitle: [item.title, conf.TITLE].join(` ${conf.TITLE_SEPARATOR} `),
-    title: item.title,
+    title: [item.title, conf.TITLE].join(` ${conf.TITLE_SEPARATOR} `),
+    article_title: item.title,
     link: item.link,
     articleTag: item.tagsHTML,
     article: item.html,
-    // tag: tagHTML,
     archive: archiveHTML,
-    // recommend: recommendHTML
   })
-  fs.writeFileSync(path.join(conf.DIST_PATH, item.path), articleHtml, 'utf8')
+  fs.writeFileSync(path.join(conf.DIST_PATH, item.path), minifyHTML(articleHtml), 'utf8')
 })
 
 singles.forEach(fileName => {
@@ -440,7 +433,7 @@ singles.forEach(fileName => {
     // recommend: recommendHTML
   })
 
-  fs.writeFileSync(path.join(conf.DIST_PATH, f), html, 'utf8')
+  fs.writeFileSync(path.join(conf.DIST_PATH, f), minifyHTML(html), 'utf8')
 })
 
 const publicFiles = fs.readdirSync(path.join(conf.SRC_PATH, 'public'));
@@ -449,3 +442,43 @@ publicFiles.forEach((fileName) => {
     fs.copyFileSync(path.join(conf.SRC_PATH, `public/${fileName}`), path.join(conf.DIST_PATH, fileName));
   }
 });
+
+const injectAnalytics = (html) => {
+  const cursor = '<head>';
+  return html.replace(cursor, [cursor, analyticsCode].join("\r\n"));
+}
+
+const copyFolderRecursiveSync = (source, target) => {
+  //check if folder needs to be created or integrated
+  // const targetFolder = path.join(target, path.basename(source));
+  if (!fs.existsSync(target)) {
+    fs.mkdirSync(target);
+  }
+
+  //copy
+  if (fs.lstatSync(source).isDirectory()) {
+    const files = fs.readdirSync(source);
+    files.forEach((file) => {
+      if (file !== '.DS_Store') {
+        const curSource = path.join(source, file);
+        if (fs.lstatSync(curSource).isDirectory()) {
+          copyFolderRecursiveSync(curSource, path.join(target, file));
+        } else if (file === 'index.html') {
+          const html = fs.readFileSync(curSource, 'utf8');
+          fs.writeFileSync(path.join(target, file), injectAnalytics(html), 'utf8')
+        } else {
+          fs.copyFileSync(curSource, path.join(target, file));
+        }
+      }
+    });
+  }
+};
+
+const staticName = 'static'
+fs.mkdirSync(path.join(conf.DIST_PATH, staticName), '0755')
+
+copyFolderRecursiveSync(path.join(conf.SRC_PATH, 'public'), conf.DIST_PATH);
+copyFolderRecursiveSync(path.join(conf.SRC_PATH, 'images'), path.join(conf.DIST_PATH, 'images'));
+copyFolderRecursiveSync(path.join(conf.SRC_PATH, staticName, 'img'), path.join(conf.DIST_PATH, staticName, 'img'));
+copyFolderRecursiveSync(path.join(conf.SRC_PATH, staticName, 'demo'), path.join(conf.DIST_PATH, staticName, 'demo'));
+

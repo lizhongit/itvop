@@ -1,28 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-
-    <meta name="description" content="{{ description }}" />
-    <meta http-equiv="X-UA-Compatible" content="edge" />
-    <meta name="renderer" content="webkit" />
-    <meta http-equiv="Content-Language" content="zh-CN" />
-    <meta name="author" content="Nicholas Lee" />
-
-    <title>{{ title }}</title>
-    <style type="text/css">
-    {{{ style }}}
-    </style>
-
+    {{> header }}
   </head>
   <body>
     <div class="app">
       <div class="app-header">
         <div class="app-nav">
           <a class="app-logo" href="{{ host_link }}">
+            <img class="app-logo-image" src="/images/logo.png" />
             <span class="app-logo-title">ITVOP</span>
           </a>
 
@@ -54,5 +40,10 @@
         </div>
       </div>
     </div>
+
+    <div class="app-footer">
+      {{> footer }}
+    </div>
+
   </body>
 </html>

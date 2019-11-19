@@ -26,6 +26,24 @@ body
   font 1.1rem/1.5 Helvetica, Microsoft YaHei, Arial, sans-serif
   color $color_drak
 
+.app-footer
+
+  padding: 1rem 0;
+  width 100%
+  background-color $color_main
+  color white
+  // text-align center
+
+  .app-footer-ad
+    text-align center
+    a
+      color white
+
+.ad-keyword
+  // text-decoration underline
+  padding-bottom 0.1rem
+  border-bottom 1px solid #fff
+
 .app
   hr,
   .app-line1
@@ -48,6 +66,11 @@ body
     // border-top 3px solid $color_main
 
     .app-nav
+      // position fixed
+      // left 0
+      // top 0
+      // background-color white
+      border-bottom 1px solid #F5F5F5
       margin 0 auto
       padding 0 $space_size
       width $width_app
@@ -72,8 +95,12 @@ body
 
       .app-nav-menu
 
-        a.ad-link
+        .ad-keyword
+          border-bottom 1px solid $color_main
           color $color_main
+
+        // a.ad-link
+        //   color $color_main
 
         a
           margin-left $space_size
@@ -103,8 +130,8 @@ body
     justify-content space-between
 
     .app-container
-      flex 0.7
-      width 70%
+      flex 1
+      // width 70%
 
       .app-page
         display flex
@@ -124,8 +151,9 @@ body
             color white
 
     .app-side
-      flex 0.27
-      width 27%
+      width 250px
+      margin-left $space_size
+      // width 27%
       // padding-left $space_size * 2
 
       .app-side-item
@@ -208,6 +236,8 @@ body
     a
       color $color_main
       cursor pointer
+      padding-bottom 0.1rem
+      border-bottom 1px solid $color_main
 
     // pre
     //   a
@@ -328,9 +358,21 @@ body
     
     .app-header
       .app-nav
+        z-index 999999999
+        position fixed
+        left 0
+        top 0
+        background-color white
+        padding $space_size
+        box-sizing border-box
         width 100%
+
+      .app-brand
+        margin-top 80px
+
     .app-body
-        width 100%
+      margin-top 80px
+      width 100%
 
 @media (max-width: 400px)
   .app
@@ -343,7 +385,8 @@ body
 @media (max-width: 600px)
   .app
     .app-header
-      .app-brand
+      .app-brand,
+      .ad-link
         display none
 
   .app-article
@@ -371,7 +414,9 @@ body
       .app-side
         display none
 
-@media (max-width: 1000px)
+@media (max-width: 900px)
   .app
-    .ad-link
-      display none
+    .app-body
+      .app-side
+        width 200px
+

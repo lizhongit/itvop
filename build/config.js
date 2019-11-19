@@ -4,8 +4,8 @@ let srcPath = './src'
 let f = (new Date()).getFullYear() - 2011
 
 module.exports = {
-  TOP_AD_TEXT: '',
-  TOP_AD_LINK: '',
+  TOP_AD_TEXT: 'Twitter',
+  TOP_AD_LINK: 'https://twitter.com/lizhongit',
   BRAND_TEXT: 'Hot For Coding',
   TITLE: 'ITVOP',
   DESCRIPTION: `Hi, this is Nicholas Lee, the site is my personal site, I'm a Full-Stack developer over ${f} years, I'd like to sharing more and more program skills here.`,
@@ -30,6 +30,10 @@ module.exports = {
   TPL_LISTPAGE: 'list-page.tpl',
   TPL_TITLELIST: 'title-list.tpl',
   TPL_ARTICLE: 'article.tpl',
+  TPL_HEADER: 'header.tpl',
+  TPL_FOOTER: 'footer.tpl',
+  TPL_DISQUS: 'disqus.tpl',
+  TPL_GOOGLE_ANALYTICS: 'google-analytics.tpl',
   TPL_RANDOM: 'random.tpl',
   TPL_NAV: 'nav.tpl',
   TPL_SINGLE: 'single.tpl'
