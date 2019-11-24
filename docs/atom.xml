@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://itvop.com</id>
+    <title>ITVOP</title>
+    <updated>2019-11-24T23:33:10.346Z</updated>
+    <generator>awesome</generator>
+    <author>
+        <name>Nicholas Lee</name>
+        <email>lizhongit@gmail.com</email>
+        <uri>https://itvop.com/about.html</uri>
+    </author>
+    <link rel="alternate" href="https://itvop.com"/>
+    <link rel="self" href="https://itvop.com/atom.xml"/>
+    <subtitle>Hi, this is Nicholas Lee, the site is my personal site, I'm a Full-Stack developer over 8 years, I'd like to sharing more and more program skills here.</subtitle>
+    <logo>https://itvop.com/images/logo.png</logo>
+    <icon>https://itvop.com/favicon.ico</icon>
+    <rights>All rights reserved 2019, Nicholas Lee</rights>
+    <entry>
+        <title type="html"><![CDATA[How to upgrade Kubernetes cluster]]></title>
+        <id>2</id>
+        <link href="https://itvop.com/2_how_to_upgrade_kubernetes_cluster.html"/>
+        <updated>2019-11-17T16:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<p><img src="/static/img/kubernetes_logo.png" alt="kubernetes"></p>
+<p>You don't need to upgrade the Kubernetes cluster in most time, there is no reason to upgrading if they running in stable, sometime we need to upgrade it for some bugs fixed and features. If you already have a running cluster and you want to upgrade it, there are three steps of work to do.</p>
+]]></summary>
+        <content type="html"><![CDATA[<p><img src="/static/img/kubernetes_logo.png" alt="kubernetes"></p>
+<p>You don't need to upgrade the Kubernetes cluster in most time, there is no reason to upgrading if they running in stable, sometime we need to upgrade it for some bugs fixed and features. If you already have a running cluster and you want to upgrade it, there are three steps of work to do.</p>
+<h2>Step 1: Get the upgrade plan</h2>
+<p>You should get the upgrade plan with kubeadm command, run below command in one of master nodes to get the upgrade plan</p>
+<pre class="hljs"><code class="shell">kubeadm upgrade plan
+</code></pre>
+<p>You should see something in stdout including like <code>You can now apply the upgrade by executing the following command</code> aflter you run it, it will list all the avaliable plan for upgrade at once. For example, here is in my case</p>
+<pre class="hljs"><code class="shell">node4 ~ # kubeadm upgrade plan
+[upgrade/config] Making sure the configuration is correct:
+[upgrade/config] Reading configuration from the cluster...
+[upgrade/config] FYI: You can look at this config file with 'kubectl -n kube-system get cm kubeadm-config -oyaml'
+[preflight] Running pre-flight checks.
+[upgrade] Making sure the cluster is healthy:
+[upgrade] Fetching available versions to upgrade to
+[upgrade/versions] Cluster version: v1.16.2
+[upgrade/versions] kubeadm version: v1.16.2
+[upgrade/versions] Latest stable version: v1.16.3
+[upgrade/versions] Latest version in the v1.16 series: v1.16.3
+
+External components that should be upgraded manually before you upgrade the control plane with 'kubeadm upgrade apply':
+COMPONENT   CURRENT   AVAILABLE
+Etcd        3.3.10    3.3.15-0
+
+Components that must be upgraded manually after you have upgraded the control plane with 'kubeadm upgrade apply':
+COMPONENT   CURRENT        AVAILABLE
+Kubelet     15 x v1.16.2   v1.16.3
+
+Upgrade to the latest version in the v1.16 series:
+
+COMPONENT            CURRENT   AVAILABLE
+API Server           v1.16.2   v1.16.3
+Controller Manager   v1.16.2   v1.16.3
+Scheduler            v1.16.2   v1.16.3
+Kube Proxy           v1.16.2   v1.16.3
+CoreDNS              1.6.2     1.6.2
+
+You can now apply the upgrade by executing the following command:
+
+        kubeadm upgrade apply v1.16.3
+
+Note: Before you can perform this upgrade, you have to update kubeadm to v1.16.3.
+</code></pre>
+<p>If there is a plan of the available list you want to continue, please, move the step 2</p>
+<h2>Step 2: Download the kubeadm</h2>
+<p>You will get a version from the upgrade plan, So we need to update kubeadm to the version, this work is just simplest, we can get the kubeadm from here: <img src="https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/" alt="https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/">.</p>
+<p>We keep going to Step 3 when you are get a binary of kubeadm.</p>
+<h2>Step 3: Upgrading with kubeadm</h2>
+<p>Now we can run a command which from Step 1 to got it to upgrade the cluster, For example, I'll upgrade my cluster from v1.16.2 to v1.16.3 in my case.</p>
+<pre class="hljs"><code class="shell">node4 ~ # kubeadm upgrade apply v1.16.3
+[upgrade/config] Making sure the configuration is correct:
+[upgrade/config] Reading configuration from the cluster...
+[upgrade/config] FYI: You can look at this config file with 'kubectl -n kube-system get cm kubeadm-config -oyaml'
+[preflight] Running pre-flight checks.
+[upgrade] Making sure the cluster is healthy:
+[upgrade/version] You have chosen to change the cluster version to "v1.16.3"
+[upgrade/versions] Cluster version: v1.16.2
+[upgrade/versions] kubeadm version: v1.16.3
+[upgrade/confirm] Are you sure you want to proceed with the upgrade? [y/N]: y
+[upgrade/prepull] Will prepull images for components [kube-apiserver kube-controller-manager kube-scheduler]
+[upgrade/prepull] Prepulling image for component kube-scheduler.
+[upgrade/prepull] Prepulling image for component kube-apiserver.
+[upgrade/prepull] Prepulling image for component kube-controller-manager.
+[apiclient] Found 0 Pods for label selector k8s-app=upgrade-prepull-kube-controller-manager
+[apiclient] Found 3 Pods for label selector k8s-app=upgrade-prepull-kube-apiserver
+[apiclient] Found 0 Pods for label selector k8s-app=upgrade-prepull-kube-scheduler
+[apiclient] Found 3 Pods for label selector k8s-app=upgrade-prepull-kube-controller-manager
+[apiclient] Found 3 Pods for label selector k8s-app=upgrade-prepull-kube-scheduler
+[upgrade/prepull] Prepulled image for component kube-apiserver.
+[upgrade/prepull] Prepulled image for component kube-controller-manager.
+[upgrade/prepull] Prepulled image for component kube-scheduler.
+[upgrade/prepull] Successfully prepulled the images for all the control plane components
+[upgrade/apply] Upgrading your Static Pod-hosted control plane to version "v1.16.3"...
+Static pod: kube-apiserver-node4 hash: 95960acc2c1b28de33ffa5714d927752
+Static pod: kube-controller-manager-node4 hash: db76afd7d7adb4351dc71a27eaccae8b
+Static pod: kube-scheduler-node4 hash: 74dea8da17aa6241e5e4f7b2ba4e1d8e
+[upgrade/staticpods] Writing new Static Pod manifests to "/etc/kubernetes/tmp/kubeadm-upgraded-manifests234740264"
+[upgrade/staticpods] Preparing for "kube-apiserver" upgrade
+[upgrade/staticpods] Renewing apiserver certificate
+[upgrade/staticpods] Renewing apiserver-kubelet-client certificate
+[upgrade/staticpods] Renewing front-proxy-client certificate
+[upgrade/staticpods] Moved new manifest to "/etc/kubernetes/manifests/kube-apiserver.yaml" and backed up old manifest to "/etc/kubernetes/tmp/kubeadm-backup-manifests-2019-11-18-09-10-29/kube-apiserver.yaml"
+[upgrade/staticpods] Waiting for the kubelet to restart the component
+[upgrade/staticpods] This might take a minute or longer depending on the component/version gap (timeout 5m0s)
+Static pod: kube-apiserver-node4 hash: 95960acc2c1b28de33ffa5714d927752
+Static pod: kube-apiserver-node4 hash: 0a655ff3baac3464c9e8cecebd3e39ed
+[apiclient] Found 3 Pods for label selector component=kube-apiserver
+[upgrade/staticpods] Component "kube-apiserver" upgraded successfully!
+[upgrade/staticpods] Preparing for "kube-controller-manager" upgrade
+[upgrade/staticpods] Renewing controller-manager.conf certificate
+[upgrade/staticpods] Moved new manifest to "/etc/kubernetes/manifests/kube-controller-manager.yaml" and backed up old manifest to "/etc/kubernetes/tmp/kubeadm-backup-manifests-2019-11-18-09-10-29/kube-controller-manager.yaml"
+[upgrade/staticpods] Waiting for the kubelet to restart the component
+[upgrade/staticpods] This might take a minute or longer depending on the component/version gap (timeout 5m0s)
+Static pod: kube-controller-manager-node4 hash: db76afd7d7adb4351dc71a27eaccae8b
+Static pod: kube-controller-manager-node4 hash: 2691e4f51ee24e8c610557d2266dcbd5
+[apiclient] Found 3 Pods for label selector component=kube-controller-manager
+[upgrade/staticpods] Component "kube-controller-manager" upgraded successfully!
+[upgrade/staticpods] Preparing for "kube-scheduler" upgrade
+[upgrade/staticpods] Renewing scheduler.conf certificate
+[upgrade/staticpods] Moved new manifest to "/etc/kubernetes/manifests/kube-scheduler.yaml" and backed up old manifest to "/etc/kubernetes/tmp/kubeadm-backup-manifests-2019-11-18-09-10-29/kube-scheduler.yaml"
+[upgrade/staticpods] Waiting for the kubelet to restart the component
+[upgrade/staticpods] This might take a minute or longer depending on the component/version gap (timeout 5m0s)
+Static pod: kube-scheduler-node4 hash: 74dea8da17aa6241e5e4f7b2ba4e1d8e
+Static pod: kube-scheduler-node4 hash: 4e1bd6e5b41d60d131353157588ab020
+[apiclient] Found 3 Pods for label selector component=kube-scheduler
+[upgrade/staticpods] Component "kube-scheduler" upgraded successfully!
+[upload-config] Storing the configuration used in ConfigMap "kubeadm-config" in the "kube-system" Namespace
+[kubelet] Creating a ConfigMap "kubelet-config-1.16" in namespace kube-system with the configuration for the kubelets in the cluster
+[kubelet-start] Downloading configuration for the kubelet from the "kubelet-config-1.16" ConfigMap in the kube-system namespace
+[kubelet-start] Writing kubelet configuration to file "/var/lib/kubelet/config.yaml"
+[bootstrap-token] configured RBAC rules to allow Node Bootstrap tokens to post CSRs in order for nodes to get long term certificate credentials
+[bootstrap-token] configured RBAC rules to allow the csrapprover controller automatically approve CSRs from a Node Bootstrap Token
+[bootstrap-token] configured RBAC rules to allow certificate rotation for all node client certificates in the cluster
+[addons]: Migrating CoreDNS Corefile
+[addons] Applied essential addon: CoreDNS
+[endpoint] WARNING: port specified in controlPlaneEndpoint overrides bindPort in the controlplane address
+[addons] Applied essential addon: kube-proxy
+
+[upgrade/successful] SUCCESS! Your cluster was upgraded to "v1.16.3". Enjoy!
+
+[upgrade/kubelet] Now that your control plane is upgraded, please proceed with upgrading your kubelets if you haven't already done so.
+</code></pre>
+<p>If you could see like <code>[upgrade/successful] SUCCESS! Your cluster was upgraded to &quot;vX.X.X&quot;. Enjoy!</code> in the last stdout, it has been done for upgrade!</p>
+<h2>Notes</h2>
+<p>There is a easy to make mistakes just only downloaing the kubeadm, you will see the new version by the command <code>kubectl get nodes</code> after downloaded the kubeadm, kubectl and kubelet for all the nodes. In fact, it really not a new version for working, You have to run command <code>kubeadm upgrade apply vX.X.X</code> for the last step.</p>
+<p>The new versions of Kubernetes isn't stable, this is a the most important. I have heavy pay for it, I upgrade my cluster tow months ago, there are tow problems I can't do something for it for a long time.</p>
+<ul>
+<li>1、The pods of Complated status isn't auto remove, But it always keep last three pods of Complated status in older version. For now, I doing by the Crontab</li>
+<li>2、The containers of Gitlab-Runner exit with code 137 even I given it enough Memory and CPU in sometime, here is my opened's issue: <img src="https://gitlab.com/gitlab-org/charts/gitlab-runner/issues/114" alt="https://gitlab.com/gitlab-org/charts/gitlab-runner/issues/114"></li>
+</ul>
+]]></content>
+        <author>
+            <name>Nicholas Lee</name>
+            <email>lizhongit@gmail.com</email>
+            <uri>https://itvop.com/about.html</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Welcome]]></title>
+        <id>1</id>
+        <link href="https://itvop.com/1_welcome.html"/>
+        <updated>2019-11-05T16:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<p><img src="/static/img/new_start.jpg" alt="full"></p>
+<h2>About me</h2>
+<p>Hello, this is Nicholas Lee, I'm a Chinese and 32 years old this year. I'm hot for coding and coding for a living, I have over 9 years coding experience in Web Development, I be at a IT company's Full-Stack developer in Peking now.</p>
+]]></summary>
+        <content type="html"><![CDATA[<p><img src="/static/img/new_start.jpg" alt="full"></p>
+<h2>About me</h2>
+<p>Hello, this is Nicholas Lee, I'm a Chinese and 32 years old this year. I'm hot for coding and coding for a living, I have over 9 years coding experience in Web Development, I be at a IT company's Full-Stack developer in Peking now.</p>
+<h2>About the website</h2>
+<p>Here's my personal website, I'd like to sharing more and more about coding skills here, of course I'd like sharing interesting thing about China sometime, too.</p>
+<p>You can focus me by the website, <a href="https://github.com/lizhongit">Github</a> and <a href="https://twitter.com/lizhongit">Twitter</a> if you want. I'll be happy to know you, maybe we could be a good friends in the future.</p>
+<p>If you have a plan to traveling China, I'll be happy to give you more infomation about China as I can.</p>
+<p>Because I'm a new guy in English, anything like grammar and words maybe wrong if you see, please help me.</p>
+<p>Thanks everybody!</p>
+]]></content>
+        <author>
+            <name>Nicholas Lee</name>
+            <email>lizhongit@gmail.com</email>
+            <uri>https://itvop.com/about.html</uri>
+        </author>
+    </entry>
+</feed>

@@ -1,5 +1,6 @@
 'use strict'
 
+const Feed = require('feed').Feed
 const minify = require('html-minifier').minify;
 const Handlebars = require('handlebars')
 const fs = require('fs')
@@ -48,6 +49,30 @@ const monthFullsName = {
   '12': 'December'
 }
 
+const author = {
+  name: 'Nicholas Lee',
+  email: 'lizhongit@gmail.com',
+  link: `${conf.URL_PREFIX}/about.html`
+}
+
+const feed = new Feed({
+  title: conf.TITLE,
+  description: conf.DESCRIPTION,
+  id: conf.URL_PREFIX,
+  link: conf.URL_PREFIX,
+  language: 'en', // optional, used only in RSS 2.0, possible values: http://www.w3.org/TR/REC-html40/struct/dirlang.html#langcodes
+  image: `${conf.URL_PREFIX}/images/logo.png`,
+  favicon: `${conf.URL_PREFIX}/favicon.ico`,
+  copyright: `All rights reserved ${(new Date()).getFullYear()}, Nicholas Lee`,
+  updated: new Date(), // optional, default = today
+  generator: 'awesome', // optional, default = 'Feed for Node.js'
+  feedLinks: {
+    json: `${conf.URL_PREFIX}/feed.json`,
+    atom: `${conf.URL_PREFIX}/atom.xml`
+  },
+  author
+});
+
 const analyticsCode = fs.readFileSync(path.join(conf.TEMPLATES_PATH, conf.TPL_GOOGLE_ANALYTICS), 'utf8')
 
 Handlebars.registerPartial('header', fs.readFileSync(path.join(conf.TEMPLATES_PATH, conf.TPL_HEADER), 'utf8'))
@@ -63,6 +88,12 @@ if (fs.existsSync(conf.DIST_PATH)) {
 
 fs.mkdirSync(conf.DIST_PATH, '0755')
 
+const getFirstImageFromContent = (md) => {
+  const regex = /^\!\[[\w\s]+\]\(([\w\.\/]+)\)$/gm
+  const m = regex.exec(md)
+
+  return m !== null ? `${conf.URL_PREFIX}${m[1]}` : null;
+}
 
 const minifyHTML = (html) => {
   return minify(html, {
@@ -377,6 +408,7 @@ Object.keys(archiveMap).forEach(key => {
 
 list.forEach((item, index) => {
   const d = item.properties.date.split('-')
+  const dObj = new Date(d[0], (d[1] - 1), d[2])
   
   const tmp = []
   for (let i = 0; i < list.length; i++) {
@@ -411,6 +443,26 @@ list.forEach((item, index) => {
     archive: archiveHTML,
   })
   fs.writeFileSync(path.join(conf.DIST_PATH, item.path), minifyHTML(articleHtml), 'utf8')
+
+  const id = Number(item.fileName.split('_')[0]);
+
+  if (len - id < conf.ARTICLES_PER_PAGE) {
+    feed.addItem({
+      title: item.title,
+      id,
+      link: item.link,
+      description: item.introHTML,
+      content: item.html,
+      author: [
+        author,
+      ],
+      contributor: [
+      ],
+      date: dObj,
+      image: getFirstImageFromContent(item.content),
+    });
+  }
+
 })
 
 singles.forEach(fileName => {
@@ -482,3 +534,6 @@ copyFolderRecursiveSync(path.join(conf.SRC_PATH, 'images'), path.join(conf.DIST_
 copyFolderRecursiveSync(path.join(conf.SRC_PATH, staticName, 'img'), path.join(conf.DIST_PATH, staticName, 'img'));
 copyFolderRecursiveSync(path.join(conf.SRC_PATH, staticName, 'demo'), path.join(conf.DIST_PATH, staticName, 'demo'));
 
+fs.writeFileSync(path.join(conf.DIST_PATH, 'rss.xml'), feed.rss2(), 'utf-8');
+fs.writeFileSync(path.join(conf.DIST_PATH, 'atom.xml'), feed.atom1(), 'utf-8');
+fs.writeFileSync(path.join(conf.DIST_PATH, 'feed.json'), feed.json1(), 'utf-8');
