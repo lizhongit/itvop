@@ -70,3 +70,4 @@ src/archives/*
 src/static
 .vscode/
 build/deploy.js
+CNAME
