@@ -4,7 +4,7 @@
         <title>ITVOP</title>
         <link>https://itvop.com</link>
         <description>Hi, this is Nicholas Lee, the site is my personal site, I'm a Full-Stack developer over 8 years, I'd like to sharing more and more program skills here.</description>
-        <lastBuildDate>Sun, 24 Nov 2019 23:33:10 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 25 Nov 2019 00:23:33 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>awesome</generator>
         <language>en</language>
@@ -15,6 +15,49 @@
         </image>
         <copyright>All rights reserved 2019, Nicholas Lee</copyright>
         <atom:link href="https://itvop.com/atom.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[A bad day from upgrading the Etcd for my Kubernetes cluster]]></title>
+            <link>https://itvop.com/3_a_bad_day_from_uprading_the_etcd_for_kubernetes.html</link>
+            <guid>https://itvop.com/3_a_bad_day_from_uprading_the_etcd_for_kubernetes.html</guid>
+            <pubDate>Sun, 24 Nov 2019 16:00:00 GMT</pubDate>
+            <description><![CDATA[<p><img src="/static/img/bad_day.jpg" alt="bad day"></p>
+<p>I said there is few problems in my Kubernetes when I upgraded it a week ago, here is the that post's link <a href="/2_how_to_upgrade_k8s.html">How to upgrade Kubernetes cluster</a>, one of problem is the Completed status of CronJob's pods can't auto clean even I set up <code>successfulJobsHistoryLimit: 3</code> for it.</p>
+]]></description>
+            <content:encoded><![CDATA[<p><img src="/static/img/bad_day.jpg" alt="bad day"></p>
+<p>I said there is few problems in my Kubernetes when I upgraded it a week ago, here is the that post's link <a href="/2_how_to_upgrade_k8s.html">How to upgrade Kubernetes cluster</a>, one of problem is the Completed status of CronJob's pods can't auto clean even I set up <code>successfulJobsHistoryLimit: 3</code> for it.</p>
+<p>I knew that error is on the Etcd not Kubernetes after upgraded in a couple days,  So I want to upgrading the Etcd. There is a shell script file in my VM for a long time. It's wirtten for my build the Kubernetes one year ago</p>
+<pre class="hljs"><code class="shell"><span class="hljs-meta">#</span><span class="bash">!/bin/sh</span>
+mkdir -p /var/etcd
+docker rm etcd1 -f
+rm -rf /var/etcd
+docker run --restart=always --net host -it --name etcd1 -d \
+-v /var/etcd:/var/etcd \
+-v /etc/localtime:/etc/localtime \
+k8s.gcr.io/etcd:3.3.10 \
+etcd --name etcd-s1 \
+--auto-compaction-retention=1 --max-request-bytes=33554432 --quota-backend-bytes=8589934592 \
+--data-dir=/var/etcd/etcd-data \
+--listen-client-urls http://0.0.0.0:2379 \
+--listen-peer-urls http://0.0.0.0:2380 \
+--initial-advertise-peer-urls http://node4.cluster.local:2380 \
+--advertise-client-urls http://node4.cluster.local:2379,http://node4.cluster.local:2380 \
+-initial-cluster-token etcd-cluster \
+-initial-cluster "etcd-s1=http://node4.cluster.local:2380,etcd-s2=http://node5.cluster.local:2380,etcd-s3=http://node6.cluster.local:2380" \
+-initial-cluster-state new
+</code></pre>
+<p>I'm just change the <code>k8s.gcr.io/etcd:3.3.10</code> to <code>k8s.gcr.io/etcd:3.3.15-0</code> and running it at once. Oh, I sure I was so stupid at that momment. I have no note that <code>rm -rf /var/etcd</code> and some initial arguments for etcd in last like <code>-initial-cluster-state new</code>.</p>
+<p>There is ruinous for my Kubernetes cluster, All the service、pod were losed. I can't do anything when I catch it, because I dit not backup the data of etcd before upgrade. So I got it there is a only way for me: rebuild a Kubernetes cluster and recover all of deploy, service, ingress!</p>
+<p>It's a overtime work for me, I must be to do it as soon as posible when all the emails starting comes to me after the Kubernetes not working an hour. It took me a long time, I'm thinking about it</p>
+<ul>
+<li>Why not choice the internal Etcd cluster for Kubernetes? the most time it will be more relable than external.</li>
+<li>Why am I upgrading in no back up data?</li>
+<li>Why I did no read the shell scripts in detial when I running it?</li>
+</ul>
+<p>Yes, it's my mistake, never do it again I told myself, I don't want to keep stupid all my life.</p>
+]]></content:encoded>
+            <author>lizhongit@gmail.com (Nicholas Lee)</author>
+            <enclosure url="https://itvop.com/static/img/bad_day.jpg"/>
+        </item>
         <item>
             <title><![CDATA[How to upgrade Kubernetes cluster]]></title>
             <link>https://itvop.com/2_how_to_upgrade_kubernetes_cluster.html</link>
