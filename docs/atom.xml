@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://itvop.com</id>
     <title>ITVOP</title>
-    <updated>2019-11-25T00:28:02.115Z</updated>
+    <updated>2019-11-28T03:24:43.280Z</updated>
     <generator>awesome</generator>
     <author>
         <name>Nicholas Lee</name>
@@ -11,7 +11,7 @@
     </author>
     <link rel="alternate" href="https://itvop.com"/>
     <link rel="self" href="https://itvop.com/atom.xml"/>
-    <subtitle>Hi, this is Nicholas Lee, the site is my personal site, I'm a Full-Stack developer over 8 years, I'd like to sharing more and more program skills here.</subtitle>
+    <subtitle>Hi, this is Nicholas Lee, this site is my personal blog, I'm a Full-Stack developer over 8 years, I'd like to sharing more and more anything here.</subtitle>
     <logo>https://itvop.com/images/logo.png</logo>
     <icon>https://itvop.com/favicon.ico</icon>
     <rights>All rights reserved 2019, Nicholas Lee</rights>

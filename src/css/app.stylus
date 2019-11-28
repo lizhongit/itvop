@@ -375,12 +375,16 @@ body
       margin-top 80px
       width 100%
 
-@media (max-width: 400px)
+@media (max-width: 430px)
   .app
     .app-header
       .app-nav
         .app-nav-menu
-          display none
+          a
+            display none
+          
+          a.nav-menu-posts
+            display inline
   
 
 @media (max-width: 600px)

@@ -406,6 +406,7 @@ Object.keys(archiveMap).forEach(key => {
 //   createListPage(tagMap[key], `tag_${key}`)
 // })
 
+const listPostsHTML = [];
 list.forEach((item, index) => {
   const d = item.properties.date.split('-')
   const dObj = new Date(d[0], (d[1] - 1), d[2])
@@ -430,6 +431,7 @@ list.forEach((item, index) => {
     host_link: conf.URL_PREFIX,
     nav: navHTML,
     random: randomHTML,
+    keywords: conf.KEYWORDS,
     // keywords: item.properties.tags.map(item => item.tagName).join(','),
     description: description(item.content),
     date: item.properties.date,
@@ -443,6 +445,12 @@ list.forEach((item, index) => {
     archive: archiveHTML,
   })
   fs.writeFileSync(path.join(conf.DIST_PATH, item.path), minifyHTML(articleHtml), 'utf8')
+
+  if (listPostsHTML.length === 0 || list[index - 1].properties.date.split('-')[0] !== d[0]) {
+    listPostsHTML.push(`## ${d[0]}`);
+  }
+
+  listPostsHTML.push(`- [${item.title}](${item.link})  -  *${monthFullsName[d[1]]} ${d[2]}, ${d[0]}*`);
 
   const id = Number(item.fileName.split('_')[0]);
 
@@ -464,6 +472,26 @@ list.forEach((item, index) => {
   }
 
 })
+
+listPostsHTML.unshift('# POSTS LIST', '---');
+
+const html = createSinglePageHTML({
+  top_ad_text: conf.TOP_AD_TEXT,
+  top_ad_link: conf.TOP_AD_LINK,
+  brand_text: conf.BRAND_TEXT,
+  nav: navHTML,
+  host_link: conf.URL_PREFIX,
+  keywords: conf.KEYWORDS,
+  description: conf.DESCRIPTION,
+  style,
+  title: ['Posts list', conf.TITLE].join(` ${conf.TITLE_SEPARATOR} `),
+  article: md.render(listPostsHTML.join('\r\n')),
+  // tag: tagHTML,
+  archive: archiveHTML,
+  // recommend: recommendHTML
+})
+
+fs.writeFileSync(path.join(conf.DIST_PATH, 'posts.html'), minifyHTML(html), 'utf8')
 
 singles.forEach(fileName => {
   const f = `${fileName.split('.')[0].replace(/[ ]/img, '').toLowerCase()}.html`
