@@ -219,6 +219,7 @@ body
     display block
     padding-bottom 2rem
     font-size 1rem
+    overflow hidden
     // width 100%
 
     img
@@ -227,6 +228,7 @@ body
       margin-left $space_size
       margin-bottom $space_size
       height auto
+      max-height 100%
 
       &[alt=full]
         margin-left 0
