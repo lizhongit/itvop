@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://itvop.com</id>
     <title>ITVOP</title>
-    <updated>2019-12-08T13:55:37.476Z</updated>
+    <updated>2019-12-09T16:01:36.750Z</updated>
     <generator>awesome</generator>
     <author>
         <name>Nicholas Lee</name>
@@ -15,6 +15,55 @@
     <logo>https://itvop.com/images/logo.png</logo>
     <icon>https://itvop.com/favicon.ico</icon>
     <rights>All rights reserved 2019, Nicholas Lee</rights>
+    <entry>
+        <title type="html"><![CDATA[Java compile code too large]]></title>
+        <id>5</id>
+        <link href="https://itvop.com/5_java_compile_code_too_large.html"/>
+        <updated>2019-12-08T16:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<p><img src="/static/img/java_funny.jpg" alt="nginx"></p>
+<p>I'm new to Java, but today I need to deploy a jar package of i18n to Maven repositry for some guys of company to use. the i18n.json file it looks like this:</p>
+<p>i18n.json</p>
+<pre class="hljs"><code class="json">{
+  <span class="hljs-attr">"NAME"</span>: {
+    <span class="hljs-attr">"zh"</span>: <span class="hljs-string">"名字"</span>,
+    <span class="hljs-attr">"en"</span>: <span class="hljs-string">"Name"</span>
+  },
+
+  <span class="hljs-attr">"AGE"</span>: {
+    <span class="hljs-attr">"zh"</span>: <span class="hljs-string">"年龄"</span>,
+    <span class="hljs-attr">"en"</span>: <span class="hljs-string">"Age"</span>
+  }
+}
+</code></pre>
+]]></summary>
+        <content type="html"><![CDATA[<p><img src="/static/img/java_funny.jpg" alt="nginx"></p>
+<p>I'm new to Java, but today I need to deploy a jar package of i18n to Maven repositry for some guys of company to use. the i18n.json file it looks like this:</p>
+<p>i18n.json</p>
+<pre class="hljs"><code class="json">{
+  <span class="hljs-attr">"NAME"</span>: {
+    <span class="hljs-attr">"zh"</span>: <span class="hljs-string">"名字"</span>,
+    <span class="hljs-attr">"en"</span>: <span class="hljs-string">"Name"</span>
+  },
+
+  <span class="hljs-attr">"AGE"</span>: {
+    <span class="hljs-attr">"zh"</span>: <span class="hljs-string">"年龄"</span>,
+    <span class="hljs-attr">"en"</span>: <span class="hljs-string">"Age"</span>
+  }
+}
+</code></pre>
+<p>In fact, all the keys in a large number in i18n.json file, maybe about ten thousands of the keys. I wanna provide a Enum of Java to including all the keys of i18n.json, the Enum can easiest for the developers to get what fully name of key they want it by the IDE auto-complete assistant.</p>
+<p>Yes, I feel that's a good idea, using enum type as key can avoid the wrong name such as string type in runtime. So I read all the keys from i18n.json file and generated a  java source file by a Python script.  in the java source file, it has a about ten thousands items of enum type in a  named Keys variable, then I'd like to compile that Java source code by a command <code>mvn deploy</code>.</p>
+<p>Unfortunately, it was failed.</p>
+<p>I got the keywords <code>code too large</code> from the failed compile stdout. What is that meaning?</p>
+<p>Finally, I'm understand it from Google search, it means is the JVM force restrict a single method in a Java class may be at most 64KB of bytecode.</p>
+<p>Eventually, I'm gave up Enum type turn to the String, if you have a good way for me please let me know.</p>
+]]></content>
+        <author>
+            <name>Nicholas Lee</name>
+            <email>lizhongit@gmail.com</email>
+            <uri>https://itvop.com/about.html</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Using the proxy_redirect module to replace the field Location in response's header on Nginx]]></title>
         <id>4</id>
