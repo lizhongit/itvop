@@ -4,7 +4,7 @@
         <title>ITVOP</title>
         <link>https://itvop.com</link>
         <description>Hi, this is Nicholas Lee, this site is my personal blog, I'm a Full-Stack developer over 8 years, I'd like to sharing more and more anything here.</description>
-        <lastBuildDate>Tue, 10 Dec 2019 01:15:49 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 11 Dec 2019 06:32:00 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>awesome</generator>
         <language>en</language>
@@ -83,7 +83,7 @@
 <p>Unfortunately, it was failed.</p>
 <p>I got the keywords <code>code too large</code> from the failed compile stdout. What is that meaning?</p>
 <p>Finally, I'm understand it from Google search, it means is the JVM force restrict a single method in a Java class may be at most 64KB of bytecode.</p>
-<p>Eventually, I'm gave up Enum type turn to the String, if you have a good way for me please let me know.</p>
+<p>Eventually, I'm gave up Enum type and have to using the String as Key of i18n, if you have a good way for me please let me know.</p>
 ]]></content:encoded>
             <author>lizhongit@gmail.com (Nicholas Lee)</author>
             <enclosure url="https://itvop.com/static/img/java_funny.jpg"/>
