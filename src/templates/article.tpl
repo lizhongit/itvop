@@ -65,7 +65,7 @@
         <div class="app-side">
 
           <div class="app-side-item">
-            <div class="app-side-title">Archivies</div>
+            <div class="app-side-title">Archives</div>
             <div class="app-side-list">
               {{{ archive }}}
             </div>
