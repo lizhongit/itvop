@@ -1,4 +1,4 @@
-$width_app = 1200px
+$width_app = 1000px
 $height_logo = 2em
 
 $color_main = #851d1c
