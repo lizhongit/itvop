@@ -4,7 +4,7 @@
         <title>ITVOP</title>
         <link>https://itvop.com</link>
         <description>Hi, this is Nicholas Lee, this site is my personal blog, I'm a Full-Stack developer over 8 years, I'd like to sharing more and more anything here.</description>
-        <lastBuildDate>Fri, 13 Dec 2019 01:33:37 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 16 Dec 2019 02:00:17 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>awesome</generator>
         <language>en</language>
@@ -15,6 +15,41 @@
         </image>
         <copyright>All rights reserved 2019, Nicholas Lee</copyright>
         <atom:link href="https://itvop.com/atom.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[Anuglar8 error ngModel isn't a known property]]></title>
+            <link>https://itvop.com/6_angular8_error_ngmodel_is_not_a_known_property.html</link>
+            <guid>https://itvop.com/6_angular8_error_ngmodel_is_not_a_known_property.html</guid>
+            <pubDate>Sun, 15 Dec 2019 16:00:00 GMT</pubDate>
+            <description><![CDATA[<p><img src="/static/img/angular8.jpg" alt="nginx"></p>
+<p>My team use Angular1 a few years ago, it's really so good for my team at that time, but the  many features of Angular2 makes developer of my team is hard to leaning. finally, we have to take the React instead of Angular2.</p>
+<p>Today, I'm take the Angular8 again for one project.</p>
+]]></description>
+            <content:encoded><![CDATA[<p><img src="/static/img/angular8.jpg" alt="nginx"></p>
+<p>My team use Angular1 a few years ago, it's really so good for my team at that time, but the  many features of Angular2 makes developer of my team is hard to leaning. finally, we have to take the React instead of Angular2.</p>
+<p>Today, I'm take the Angular8 again for one project.</p>
+<p>Unfortunately, I got a error when I using a radio. the error like this:</p>
+<blockquote>
+<p>Can't bind to 'ngModel' since it isn't a known property of 'mat-radio-group'.</p>
+</blockquote>
+<p>It tells me the ngModel isn't a known property, Am I missing something? I chack it that again and again, there is nothing error in my code I think.</p>
+<p>But isn't really working now, finally, I got the error reason from Stack Overflow, It needs import the FormsModule in module before using the ngModel property.</p>
+<pre class="hljs"><code class="javascript"><span class="hljs-keyword">import</span> { FormsModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/forms'</span>;
+
+@NgModule({
+  ...
+  imports: [
+    ...
+    FormsModule,
+    ...
+  ]
+  ...
+})
+</code></pre>
+<p>Now, the ngModel property working now.</p>
+]]></content:encoded>
+            <author>lizhongit@gmail.com (Nicholas Lee)</author>
+            <enclosure url="https://itvop.com/static/img/angular8.jpg"/>
+        </item>
         <item>
             <title><![CDATA[Java compile code too large]]></title>
             <link>https://itvop.com/5_java_compile_code_too_large.html</link>

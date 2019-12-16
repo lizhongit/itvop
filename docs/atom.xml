@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://itvop.com</id>
     <title>ITVOP</title>
-    <updated>2019-12-13T01:33:37.985Z</updated>
+    <updated>2019-12-16T02:00:17.783Z</updated>
     <generator>awesome</generator>
     <author>
         <name>Nicholas Lee</name>
@@ -15,6 +15,44 @@
     <logo>https://itvop.com/images/logo.png</logo>
     <icon>https://itvop.com/favicon.ico</icon>
     <rights>All rights reserved 2019, Nicholas Lee</rights>
+    <entry>
+        <title type="html"><![CDATA[Anuglar8 error ngModel isn't a known property]]></title>
+        <id>6</id>
+        <link href="https://itvop.com/6_angular8_error_ngmodel_is_not_a_known_property.html"/>
+        <updated>2019-12-15T16:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<p><img src="/static/img/angular8.jpg" alt="nginx"></p>
+<p>My team use Angular1 a few years ago, it's really so good for my team at that time, but the  many features of Angular2 makes developer of my team is hard to leaning. finally, we have to take the React instead of Angular2.</p>
+<p>Today, I'm take the Angular8 again for one project.</p>
+]]></summary>
+        <content type="html"><![CDATA[<p><img src="/static/img/angular8.jpg" alt="nginx"></p>
+<p>My team use Angular1 a few years ago, it's really so good for my team at that time, but the  many features of Angular2 makes developer of my team is hard to leaning. finally, we have to take the React instead of Angular2.</p>
+<p>Today, I'm take the Angular8 again for one project.</p>
+<p>Unfortunately, I got a error when I using a radio. the error like this:</p>
+<blockquote>
+<p>Can't bind to 'ngModel' since it isn't a known property of 'mat-radio-group'.</p>
+</blockquote>
+<p>It tells me the ngModel isn't a known property, Am I missing something? I chack it that again and again, there is nothing error in my code I think.</p>
+<p>But isn't really working now, finally, I got the error reason from Stack Overflow, It needs import the FormsModule in module before using the ngModel property.</p>
+<pre class="hljs"><code class="javascript"><span class="hljs-keyword">import</span> { FormsModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/forms'</span>;
+
+@NgModule({
+  ...
+  imports: [
+    ...
+    FormsModule,
+    ...
+  ]
+  ...
+})
+</code></pre>
+<p>Now, the ngModel property working now.</p>
+]]></content>
+        <author>
+            <name>Nicholas Lee</name>
+            <email>lizhongit@gmail.com</email>
+            <uri>https://itvop.com/about.html</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Java compile code too large]]></title>
         <id>5</id>
