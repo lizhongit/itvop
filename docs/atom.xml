@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://itvop.com</id>
     <title>ITVOP</title>
-    <updated>2019-12-16T02:00:17.783Z</updated>
+    <updated>2020-03-13T03:35:01.749Z</updated>
     <generator>awesome</generator>
     <author>
         <name>Nicholas Lee</name>
@@ -11,10 +11,54 @@
     </author>
     <link rel="alternate" href="https://itvop.com"/>
     <link rel="self" href="https://itvop.com/atom.xml"/>
-    <subtitle>Hi, this is Nicholas Lee, this site is my personal blog, I'm a Full-Stack developer over 8 years, I'd like to sharing more and more anything here.</subtitle>
+    <subtitle>Hi, this is Nicholas Lee, this site is my personal blog, I'm a Full-Stack developer over 9 years, I'd like to sharing more and more anything here.</subtitle>
     <logo>https://itvop.com/images/logo.png</logo>
     <icon>https://itvop.com/favicon.ico</icon>
-    <rights>All rights reserved 2019, Nicholas Lee</rights>
+    <rights>All rights reserved 2020, Nicholas Lee</rights>
+    <entry>
+        <title type="html"><![CDATA[Rust how import a module]]></title>
+        <id>7</id>
+        <link href="https://itvop.com/7_rust_how_import_a_module.html"/>
+        <updated>2020-03-12T16:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<p>Sometimes, we won't write a lot of code into one file, the better way is split the code into multiple files.</p>
+<p>So, all the another files we call it modules, now we encounter a problem: How import a module to where we wanna use it?</p>
+<p>That's very easiest in Rust, just use ‘mod’ keyword to do it.</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>Sometimes, we won't write a lot of code into one file, the better way is split the code into multiple files.</p>
+<p>So, all the another files we call it modules, now we encounter a problem: How import a module to where we wanna use it?</p>
+<p>That's very easiest in Rust, just use ‘mod’ keyword to do it.</p>
+<p>math.rs</p>
+<pre class="hljs"><code class="rust"><span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">sum</span></span>(a: <span class="hljs-built_in">u32</span>, b: <span class="hljs-built_in">u32</span>) -&gt; <span class="hljs-built_in">u32</span> {
+  <span class="hljs-keyword">return</span> a + b;
+}
+</code></pre>
+<p>main.rs</p>
+<pre class="hljs"><code class="rust"><span class="hljs-keyword">mod</span> math;
+
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
+  <span class="hljs-built_in">println!</span>(<span class="hljs-string">"32 + 67 = {}"</span>, math::sum(<span class="hljs-number">32</span>, <span class="hljs-number">67</span>));
+}
+</code></pre>
+<p>Don't forget add <code>pub</code> before <code>fn</code> to declare it that is a public function, that mean is it allow another module can be use this function. if the module name very long e.g <code>Math Lib</code>, so you can't use Camel-Case like this <code>mathLib</code>, we only just use Snake-Csae such as <code>math_lib</code></p>
+<p>math_lib.rs</p>
+<pre class="hljs"><code class="rust"><span class="hljs-keyword">pub</span> <span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">sum</span></span>(a: <span class="hljs-built_in">u32</span>, b: <span class="hljs-built_in">u32</span>) -&gt; <span class="hljs-built_in">u32</span> {
+  <span class="hljs-keyword">return</span> a + b;
+}
+</code></pre>
+<p>main.rs</p>
+<pre class="hljs"><code class="rust"><span class="hljs-keyword">mod</span> math_lib;
+
+<span class="hljs-function"><span class="hljs-keyword">fn</span> <span class="hljs-title">main</span></span>() {
+  <span class="hljs-built_in">println!</span>(<span class="hljs-string">"32 + 67 = {}"</span>, math_lib::sum(<span class="hljs-number">32</span>, <span class="hljs-number">67</span>));
+}
+</code></pre>
+]]></content>
+        <author>
+            <name>Nicholas Lee</name>
+            <email>lizhongit@gmail.com</email>
+            <uri>https://itvop.com/about.html</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Anuglar8 error ngModel isn't a known property]]></title>
         <id>6</id>

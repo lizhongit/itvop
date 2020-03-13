@@ -3,13 +3,25 @@
     "title": "ITVOP",
     "home_page_url": "https://itvop.com",
     "feed_url": "https://itvop.com/feed.json",
-    "description": "Hi, this is Nicholas Lee, this site is my personal blog, I'm a Full-Stack developer over 8 years, I'd like to sharing more and more anything here.",
+    "description": "Hi, this is Nicholas Lee, this site is my personal blog, I'm a Full-Stack developer over 9 years, I'd like to sharing more and more anything here.",
     "icon": "https://itvop.com/images/logo.png",
     "author": {
         "name": "Nicholas Lee",
         "url": "https://itvop.com/about.html"
     },
     "items": [
+        {
+            "id": 7,
+            "content_html": "<p>Sometimes, we won't write a lot of code into one file, the better way is split the code into multiple files.</p>\n<p>So, all the another files we call it modules, now we encounter a problem: How import a module to where we wanna use it?</p>\n<p>That's very easiest in Rust, just use ‘mod’ keyword to do it.</p>\n<p>math.rs</p>\n<pre class=\"hljs\"><code class=\"rust\"><span class=\"hljs-keyword\">pub</span> <span class=\"hljs-function\"><span class=\"hljs-keyword\">fn</span> <span class=\"hljs-title\">sum</span></span>(a: <span class=\"hljs-built_in\">u32</span>, b: <span class=\"hljs-built_in\">u32</span>) -&gt; <span class=\"hljs-built_in\">u32</span> {\n  <span class=\"hljs-keyword\">return</span> a + b;\n}\n</code></pre>\n<p>main.rs</p>\n<pre class=\"hljs\"><code class=\"rust\"><span class=\"hljs-keyword\">mod</span> math;\n\n<span class=\"hljs-function\"><span class=\"hljs-keyword\">fn</span> <span class=\"hljs-title\">main</span></span>() {\n  <span class=\"hljs-built_in\">println!</span>(<span class=\"hljs-string\">\"32 + 67 = {}\"</span>, math::sum(<span class=\"hljs-number\">32</span>, <span class=\"hljs-number\">67</span>));\n}\n</code></pre>\n<p>Don't forget add <code>pub</code> before <code>fn</code> to declare it that is a public function, that mean is it allow another module can be use this function. if the module name very long e.g <code>Math Lib</code>, so you can't use Camel-Case like this <code>mathLib</code>, we only just use Snake-Csae such as <code>math_lib</code></p>\n<p>math_lib.rs</p>\n<pre class=\"hljs\"><code class=\"rust\"><span class=\"hljs-keyword\">pub</span> <span class=\"hljs-function\"><span class=\"hljs-keyword\">fn</span> <span class=\"hljs-title\">sum</span></span>(a: <span class=\"hljs-built_in\">u32</span>, b: <span class=\"hljs-built_in\">u32</span>) -&gt; <span class=\"hljs-built_in\">u32</span> {\n  <span class=\"hljs-keyword\">return</span> a + b;\n}\n</code></pre>\n<p>main.rs</p>\n<pre class=\"hljs\"><code class=\"rust\"><span class=\"hljs-keyword\">mod</span> math_lib;\n\n<span class=\"hljs-function\"><span class=\"hljs-keyword\">fn</span> <span class=\"hljs-title\">main</span></span>() {\n  <span class=\"hljs-built_in\">println!</span>(<span class=\"hljs-string\">\"32 + 67 = {}\"</span>, math_lib::sum(<span class=\"hljs-number\">32</span>, <span class=\"hljs-number\">67</span>));\n}\n</code></pre>\n",
+            "url": "https://itvop.com/7_rust_how_import_a_module.html",
+            "title": "Rust how import a module",
+            "summary": "<p>Sometimes, we won't write a lot of code into one file, the better way is split the code into multiple files.</p>\n<p>So, all the another files we call it modules, now we encounter a problem: How import a module to where we wanna use it?</p>\n<p>That's very easiest in Rust, just use ‘mod’ keyword to do it.</p>\n",
+            "date_modified": "2020-03-12T16:00:00.000Z",
+            "author": {
+                "name": "Nicholas Lee",
+                "url": "https://itvop.com/about.html"
+            }
+        },
         {
             "id": 6,
             "content_html": "<p><img src=\"/static/img/angular8.jpg\" alt=\"nginx\"></p>\n<p>My team use Angular1 a few years ago, it's really so good for my team at that time, but the  many features of Angular2 makes developer of my team is hard to leaning. finally, we have to take the React instead of Angular2.</p>\n<p>Today, I'm take the Angular8 again for one project.</p>\n<p>Unfortunately, I got a error when I using a radio. the error like this:</p>\n<blockquote>\n<p>Can't bind to 'ngModel' since it isn't a known property of 'mat-radio-group'.</p>\n</blockquote>\n<p>It tells me the ngModel isn't a known property, Am I missing something? I chack it that again and again, there is nothing error in my code I think.</p>\n<p>But isn't really working now, finally, I got the error reason from Stack Overflow, It needs import the FormsModule in module before using the ngModel property.</p>\n<pre class=\"hljs\"><code class=\"javascript\"><span class=\"hljs-keyword\">import</span> { FormsModule } <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@angular/forms'</span>;\n\n@NgModule({\n  ...\n  imports: [\n    ...\n    FormsModule,\n    ...\n  ]\n  ...\n})\n</code></pre>\n<p>Now, the ngModel property working now.</p>\n",

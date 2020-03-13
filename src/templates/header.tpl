@@ -8,7 +8,7 @@
 <meta name="description" content="{{ description }}" />
 <meta http-equiv="X-UA-Compatible" content="edge" />
 <meta name="renderer" content="webkit" />
-<meta http-equiv="Content-Language" content="zh-CN" />
+<meta http-equiv="Content-Language" content="en-US" />
 <meta name="author" content="Nicholas Lee" />
 
 <title>{{ title }}</title>
