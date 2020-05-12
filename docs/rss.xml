@@ -4,7 +4,7 @@
         <title>ITVOP</title>
         <link>https://itvop.com</link>
         <description>Hi, this is Nicholas Lee, this site is my personal blog, I'm a Full-Stack developer over 9 years, I'd like to sharing more and more anything here.</description>
-        <lastBuildDate>Tue, 12 May 2020 09:43:06 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 12 May 2020 09:52:03 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>awesome</generator>
         <language>en</language>
@@ -16,17 +16,17 @@
         <copyright>All rights reserved 2020, Nicholas Lee</copyright>
         <atom:link href="https://itvop.com/atom.xml" rel="self" type="application/rss+xml"/>
         <item>
-            <title><![CDATA[My twins were born a HUNDRED days]]></title>
+            <title><![CDATA[100th days after the twins was born]]></title>
             <link>https://itvop.com/10_hundred_days.html</link>
             <guid>https://itvop.com/10_hundred_days.html</guid>
             <pubDate>Mon, 11 May 2020 16:00:00 GMT</pubDate>
             <description><![CDATA[<p><img src="/static/img/hundred_days_1.jpg" alt="full"></p>
-<p>My twins were born a hundred days to today, the average weight of the two babies is about 5.5 kg.</p>
+<p>Today is 100th days after the twins was born, the average weight of the two babies is about 5.5 kg.</p>
 <p>Each time they can eatting about 100ml, most time they are sleeping,  a few hours for eatting and playing one day.</p>
 <p>One important point: Their eyes can catch me now.</p>
 ]]></description>
             <content:encoded><![CDATA[<p><img src="/static/img/hundred_days_1.jpg" alt="full"></p>
-<p>My twins were born a hundred days to today, the average weight of the two babies is about 5.5 kg.</p>
+<p>Today is 100th days after the twins was born, the average weight of the two babies is about 5.5 kg.</p>
 <p>Each time they can eatting about 100ml, most time they are sleeping,  a few hours for eatting and playing one day.</p>
 <p>One important point: Their eyes can catch me now.</p>
 <p><img src="/static/img/hundred_days_2.jpg" alt="full"></p>
