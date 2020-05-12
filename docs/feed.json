@@ -11,6 +11,45 @@
     },
     "items": [
         {
+            "id": 10,
+            "content_html": "<p><img src=\"/static/img/hundred_days_1.jpg\" alt=\"full\"></p>\n<p>My twins were born a hundred days to today, the average weight of the two babies is about 5.5 kg.</p>\n<p>Each time they can eatting about 100ml, most time they are sleeping,  a few hours for eatting and playing one day.</p>\n<p>One important point: Their eyes can catch me now.</p>\n<p><img src=\"/static/img/hundred_days_2.jpg\" alt=\"full\"></p>\n<p><img src=\"/static/img/hundred_days_3.jpg\" alt=\"full\"></p>\n<p><img src=\"/static/img/hundred_days_4.jpg\" alt=\"full\"></p>\n",
+            "url": "https://itvop.com/10_hundred_days.html",
+            "title": "My twins were born a HUNDRED days",
+            "summary": "<p><img src=\"/static/img/hundred_days_1.jpg\" alt=\"full\"></p>\n<p>My twins were born a hundred days to today, the average weight of the two babies is about 5.5 kg.</p>\n<p>Each time they can eatting about 100ml, most time they are sleeping,  a few hours for eatting and playing one day.</p>\n<p>One important point: Their eyes can catch me now.</p>\n",
+            "image": "https://itvop.com/static/img/hundred_days_1.jpg",
+            "date_modified": "2020-05-11T16:00:00.000Z",
+            "author": {
+                "name": "Nicholas Lee",
+                "url": "https://itvop.com/about.html"
+            }
+        },
+        {
+            "id": 9,
+            "content_html": "<p><img src=\"/static/img/babies_go_home.jpg\" alt=\"full\"></p>\n<p>Waited for nine days, I got a call from the hospital, they tell me I can take my twins go home today.</p>\n<p>My wife and I are very happy for that, We'll see our babies for the first times after they were born.</p>\n<p>Finally, we taked them at twelve o'clcok, it’s so happiness!</p>\n",
+            "url": "https://itvop.com/9_take_babies_home_today.html",
+            "title": "Take twins go home from hospital today",
+            "summary": "<p><img src=\"/static/img/babies_go_home.jpg\" alt=\"full\"></p>\n<p>Waited for nine days, I got a call from the hospital, they tell me I can take my twins go home today.</p>\n<p>My wife and I are very happy for that, We'll see our babies for the first times after they were born.</p>\n<p>Finally, we taked them at twelve o'clcok, it’s so happiness!</p>\n",
+            "image": "https://itvop.com/static/img/babies_go_home.jpg",
+            "date_modified": "2020-02-10T16:00:00.000Z",
+            "author": {
+                "name": "Nicholas Lee",
+                "url": "https://itvop.com/about.html"
+            }
+        },
+        {
+            "id": 8,
+            "content_html": "<p><img src=\"/static/img/new_life.jpg\" alt=\"full\"></p>\n<p>I'd like to tell everybody good news: My twins were born today!!!</p>\n<p>Yeah, they both are boys...., from now on I’ll be a real DADDY.</p>\n<p>Unfortunately I can't see them until they get out from infant incubator, I wish two babies getting better and better as soon as posible.</p>\n<p>Thanks my wife Alice Guo all my life!</p>\n",
+            "url": "https://itvop.com/8_my_babies_was_born_today.html",
+            "title": "My twins was born today",
+            "summary": "<p><img src=\"/static/img/new_life.jpg\" alt=\"full\"></p>\n<p>I'd like to tell everybody good news: My twins were born today!!!</p>\n<p>Yeah, they both are boys...., from now on I’ll be a real DADDY.</p>\n<p>Unfortunately I can't see them until they get out from infant incubator, I wish two babies getting better and better as soon as posible.</p>\n",
+            "image": "https://itvop.com/static/img/new_life.jpg",
+            "date_modified": "2020-02-02T16:00:00.000Z",
+            "author": {
+                "name": "Nicholas Lee",
+                "url": "https://itvop.com/about.html"
+            }
+        },
+        {
             "id": 7,
             "content_html": "<p>Sometimes, we won't write a lot of code into one file, the better way is split the code into multiple files.</p>\n<p>So, all the another files we call it modules, now we encounter a problem: How import a module to where we wanna use it?</p>\n<p>That's very easiest in Rust, just use ‘mod’ keyword to do it.</p>\n<p>math.rs</p>\n<pre class=\"hljs\"><code class=\"rust\"><span class=\"hljs-keyword\">pub</span> <span class=\"hljs-function\"><span class=\"hljs-keyword\">fn</span> <span class=\"hljs-title\">sum</span></span>(a: <span class=\"hljs-built_in\">u32</span>, b: <span class=\"hljs-built_in\">u32</span>) -&gt; <span class=\"hljs-built_in\">u32</span> {\n  <span class=\"hljs-keyword\">return</span> a + b;\n}\n</code></pre>\n<p>main.rs</p>\n<pre class=\"hljs\"><code class=\"rust\"><span class=\"hljs-keyword\">mod</span> math;\n\n<span class=\"hljs-function\"><span class=\"hljs-keyword\">fn</span> <span class=\"hljs-title\">main</span></span>() {\n  <span class=\"hljs-built_in\">println!</span>(<span class=\"hljs-string\">\"32 + 67 = {}\"</span>, math::sum(<span class=\"hljs-number\">32</span>, <span class=\"hljs-number\">67</span>));\n}\n</code></pre>\n<p>Don't forget add <code>pub</code> before <code>fn</code> to declare it that is a public function, that mean is it allow another module can be use this function. if the module name very long e.g <code>Math Lib</code>, so you can't use Camel-Case like this <code>mathLib</code>, we only just use Snake-Csae such as <code>math_lib</code></p>\n<p>math_lib.rs</p>\n<pre class=\"hljs\"><code class=\"rust\"><span class=\"hljs-keyword\">pub</span> <span class=\"hljs-function\"><span class=\"hljs-keyword\">fn</span> <span class=\"hljs-title\">sum</span></span>(a: <span class=\"hljs-built_in\">u32</span>, b: <span class=\"hljs-built_in\">u32</span>) -&gt; <span class=\"hljs-built_in\">u32</span> {\n  <span class=\"hljs-keyword\">return</span> a + b;\n}\n</code></pre>\n<p>main.rs</p>\n<pre class=\"hljs\"><code class=\"rust\"><span class=\"hljs-keyword\">mod</span> math_lib;\n\n<span class=\"hljs-function\"><span class=\"hljs-keyword\">fn</span> <span class=\"hljs-title\">main</span></span>() {\n  <span class=\"hljs-built_in\">println!</span>(<span class=\"hljs-string\">\"32 + 67 = {}\"</span>, math_lib::sum(<span class=\"hljs-number\">32</span>, <span class=\"hljs-number\">67</span>));\n}\n</code></pre>\n",
             "url": "https://itvop.com/7_rust_how_import_a_module.html",
