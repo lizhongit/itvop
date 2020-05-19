@@ -11,6 +11,19 @@
     },
     "items": [
         {
+            "id": 11,
+            "content_html": "<p><img src=\"/static/img/barber_sz.jpg\" alt=\"full\"></p>\n<p>When I was a little boy, maybe 1995, I living in a small town with my family. I remember that about barber's. I usualy go to a street barber's near home about 500m, the barber is a old man and he looks up not fashion, but it only costs 1 CNY. Yeah, even he will takes about 30min to serivce for you, this is different from the US. I heard that all of people service will costs so expensive anyway.</p>\n<p>A few years later, there are some looks up is very fashion barber's in the street, just two point</p>\n<ul>\n<li>A big glass wall-side, it looks very different around.</li>\n<li>A Pole outside their Shop, yes, all of them</li>\n</ul>\n<p><img src=\"/static/img/barber_pole.jpeg\" alt=\"full\"></p>\n<p>I was shock when I first see them: How a fancy barber's is? It must be so expensive, but I realy want to go inside everytime anyway.</p>\n<p>But parents always warn thire children:</p>\n<p>Don't go there forever!</p>\n<p>It's like crime when someone mentions the fashion barber's. becasue there are some lack of clothing girls...it's so hard to say what feeling is.</p>\n<p>I first go inside the fashion barber's when I was 18 years old. it's a keep secrets from family, I remember that time it costs 4 CNY, it's a little expensive for me at that time.</p>\n<p>Fortunately, there is nothing! just a younger girl be a barber service for me, only different from other barber's that is she wash my hair after hair cut done.</p>\n<p>But most older people don't go there because they think there is provide sex not hair cut service, it was very strange at the time.</p>\n",
+            "url": "https://itvop.com/11_why_people_dont_go_to_the_barbers_in_china.html",
+            "title": "Why people don't go to the barber's in China",
+            "summary": "<p><img src=\"/static/img/barber_sz.jpg\" alt=\"full\"></p>\n<p>When I was a little boy, maybe 1995, I living in a small town with my family. I remember that about barber's. I usualy go to a street barber's near home about 500m, the barber is a old man and he looks up not fashion, but it only costs 1 CNY. Yeah, even he will takes about 30min to serivce for you, this is different from the US. I heard that all of people service will costs so expensive anyway.</p>\n",
+            "image": "https://itvop.com/static/img/barber_sz.jpg",
+            "date_modified": "2020-05-18T16:00:00.000Z",
+            "author": {
+                "name": "Nicholas Lee",
+                "url": "https://itvop.com/about.html"
+            }
+        },
+        {
             "id": 10,
             "content_html": "<p><img src=\"/static/img/hundred_days_1.jpg\" alt=\"full\"></p>\n<p>Today is 100th days after the twins was born, the average weight of the two babies is about 5.5 kg.</p>\n<p>Each time they can eatting about 100ml, most time they are sleeping,  a few hours for eatting and playing one day.</p>\n<p>One important point: Their eyes can catch me now.</p>\n<p><img src=\"/static/img/hundred_days_2.jpg\" alt=\"full\"></p>\n<p><img src=\"/static/img/hundred_days_3.jpg\" alt=\"full\"></p>\n<p><img src=\"/static/img/hundred_days_4.jpg\" alt=\"full\"></p>\n",
             "url": "https://itvop.com/10_hundred_days.html",
@@ -121,19 +134,6 @@
             "summary": "<p><img src=\"/static/img/kubernetes_logo.png\" alt=\"kubernetes\"></p>\n<p>You don't need to upgrade the Kubernetes cluster in most time, there is no reason to upgrading if they running in stable, sometime we need to upgrade it for some bugs fixed and features. If you already have a running cluster and you want to upgrade it, there are three steps of work to do.</p>\n",
             "image": "https://itvop.com/static/img/kubernetes_logo.png",
             "date_modified": "2019-11-17T16:00:00.000Z",
-            "author": {
-                "name": "Nicholas Lee",
-                "url": "https://itvop.com/about.html"
-            }
-        },
-        {
-            "id": 1,
-            "content_html": "<p><img src=\"/static/img/new_start.jpg\" alt=\"full\"></p>\n<h2>About me</h2>\n<p>Hello, this is Nicholas Lee, I'm a Chinese and 32 years old this year. I'm hot for coding and coding for a living, I have over 9 years coding experience in Web Development, I be at a IT company's Full-Stack developer in Peking now.</p>\n<h2>About the website</h2>\n<p>Here's my personal website, I'd like to sharing more and more about coding skills here, of course I'd like sharing interesting thing about China sometime, too.</p>\n<p>You can focus me by the website, <a href=\"https://github.com/lizhongit\">Github</a> and <a href=\"https://twitter.com/lizhongit\">Twitter</a> if you want. I'll be happy to know you, maybe we could be a good friends in the future.</p>\n<p>If you have a plan to traveling China, I'll be happy to give you more infomation about China as I can.</p>\n<p>Because I'm a new guy in English, anything like grammar and words maybe wrong if you see, please help me.</p>\n<p>Thanks everybody!</p>\n",
-            "url": "https://itvop.com/1_welcome.html",
-            "title": "Welcome",
-            "summary": "<p><img src=\"/static/img/new_start.jpg\" alt=\"full\"></p>\n<h2>About me</h2>\n<p>Hello, this is Nicholas Lee, I'm a Chinese and 32 years old this year. I'm hot for coding and coding for a living, I have over 9 years coding experience in Web Development, I be at a IT company's Full-Stack developer in Peking now.</p>\n",
-            "image": "https://itvop.com/static/img/new_start.jpg",
-            "date_modified": "2019-11-05T16:00:00.000Z",
             "author": {
                 "name": "Nicholas Lee",
                 "url": "https://itvop.com/about.html"

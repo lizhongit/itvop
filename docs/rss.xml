@@ -4,7 +4,7 @@
         <title>ITVOP</title>
         <link>https://itvop.com</link>
         <description>Hi, this is Nicholas Lee, this site is my personal blog, I'm a Full-Stack developer over 9 years, I'd like to sharing more and more anything here.</description>
-        <lastBuildDate>Tue, 12 May 2020 09:52:03 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 19 May 2020 09:42:42 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>awesome</generator>
         <language>en</language>
@@ -15,6 +15,33 @@
         </image>
         <copyright>All rights reserved 2020, Nicholas Lee</copyright>
         <atom:link href="https://itvop.com/atom.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[Why people don't go to the barber's in China]]></title>
+            <link>https://itvop.com/11_why_people_dont_go_to_the_barbers_in_china.html</link>
+            <guid>https://itvop.com/11_why_people_dont_go_to_the_barbers_in_china.html</guid>
+            <pubDate>Mon, 18 May 2020 16:00:00 GMT</pubDate>
+            <description><![CDATA[<p><img src="/static/img/barber_sz.jpg" alt="full"></p>
+<p>When I was a little boy, maybe 1995, I living in a small town with my family. I remember that about barber's. I usualy go to a street barber's near home about 500m, the barber is a old man and he looks up not fashion, but it only costs 1 CNY. Yeah, even he will takes about 30min to serivce for you, this is different from the US. I heard that all of people service will costs so expensive anyway.</p>
+]]></description>
+            <content:encoded><![CDATA[<p><img src="/static/img/barber_sz.jpg" alt="full"></p>
+<p>When I was a little boy, maybe 1995, I living in a small town with my family. I remember that about barber's. I usualy go to a street barber's near home about 500m, the barber is a old man and he looks up not fashion, but it only costs 1 CNY. Yeah, even he will takes about 30min to serivce for you, this is different from the US. I heard that all of people service will costs so expensive anyway.</p>
+<p>A few years later, there are some looks up is very fashion barber's in the street, just two point</p>
+<ul>
+<li>A big glass wall-side, it looks very different around.</li>
+<li>A Pole outside their Shop, yes, all of them</li>
+</ul>
+<p><img src="/static/img/barber_pole.jpeg" alt="full"></p>
+<p>I was shock when I first see them: How a fancy barber's is? It must be so expensive, but I realy want to go inside everytime anyway.</p>
+<p>But parents always warn thire children:</p>
+<p>Don't go there forever!</p>
+<p>It's like crime when someone mentions the fashion barber's. becasue there are some lack of clothing girls...it's so hard to say what feeling is.</p>
+<p>I first go inside the fashion barber's when I was 18 years old. it's a keep secrets from family, I remember that time it costs 4 CNY, it's a little expensive for me at that time.</p>
+<p>Fortunately, there is nothing! just a younger girl be a barber service for me, only different from other barber's that is she wash my hair after hair cut done.</p>
+<p>But most older people don't go there because they think there is provide sex not hair cut service, it was very strange at the time.</p>
+]]></content:encoded>
+            <author>lizhongit@gmail.com (Nicholas Lee)</author>
+            <enclosure url="https://itvop.com/static/img/barber_sz.jpg"/>
+        </item>
         <item>
             <title><![CDATA[100th days after the twins was born]]></title>
             <link>https://itvop.com/10_hundred_days.html</link>
@@ -434,28 +461,6 @@ Static pod: kube-scheduler-node4 hash: 4e1bd6e5b41d60d131353157588ab020
 ]]></content:encoded>
             <author>lizhongit@gmail.com (Nicholas Lee)</author>
             <enclosure url="https://itvop.com/static/img/kubernetes_logo.png"/>
-        </item>
-        <item>
-            <title><![CDATA[Welcome]]></title>
-            <link>https://itvop.com/1_welcome.html</link>
-            <guid>https://itvop.com/1_welcome.html</guid>
-            <pubDate>Tue, 05 Nov 2019 16:00:00 GMT</pubDate>
-            <description><![CDATA[<p><img src="/static/img/new_start.jpg" alt="full"></p>
-<h2>About me</h2>
-<p>Hello, this is Nicholas Lee, I'm a Chinese and 32 years old this year. I'm hot for coding and coding for a living, I have over 9 years coding experience in Web Development, I be at a IT company's Full-Stack developer in Peking now.</p>
-]]></description>
-            <content:encoded><![CDATA[<p><img src="/static/img/new_start.jpg" alt="full"></p>
-<h2>About me</h2>
-<p>Hello, this is Nicholas Lee, I'm a Chinese and 32 years old this year. I'm hot for coding and coding for a living, I have over 9 years coding experience in Web Development, I be at a IT company's Full-Stack developer in Peking now.</p>
-<h2>About the website</h2>
-<p>Here's my personal website, I'd like to sharing more and more about coding skills here, of course I'd like sharing interesting thing about China sometime, too.</p>
-<p>You can focus me by the website, <a href="https://github.com/lizhongit">Github</a> and <a href="https://twitter.com/lizhongit">Twitter</a> if you want. I'll be happy to know you, maybe we could be a good friends in the future.</p>
-<p>If you have a plan to traveling China, I'll be happy to give you more infomation about China as I can.</p>
-<p>Because I'm a new guy in English, anything like grammar and words maybe wrong if you see, please help me.</p>
-<p>Thanks everybody!</p>
-]]></content:encoded>
-            <author>lizhongit@gmail.com (Nicholas Lee)</author>
-            <enclosure url="https://itvop.com/static/img/new_start.jpg"/>
         </item>
     </channel>
 </rss>

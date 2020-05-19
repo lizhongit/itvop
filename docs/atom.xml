@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://itvop.com</id>
     <title>ITVOP</title>
-    <updated>2020-05-12T09:52:03.874Z</updated>
+    <updated>2020-05-19T09:42:42.196Z</updated>
     <generator>awesome</generator>
     <author>
         <name>Nicholas Lee</name>
@@ -15,6 +15,36 @@
     <logo>https://itvop.com/images/logo.png</logo>
     <icon>https://itvop.com/favicon.ico</icon>
     <rights>All rights reserved 2020, Nicholas Lee</rights>
+    <entry>
+        <title type="html"><![CDATA[Why people don't go to the barber's in China]]></title>
+        <id>11</id>
+        <link href="https://itvop.com/11_why_people_dont_go_to_the_barbers_in_china.html"/>
+        <updated>2020-05-18T16:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<p><img src="/static/img/barber_sz.jpg" alt="full"></p>
+<p>When I was a little boy, maybe 1995, I living in a small town with my family. I remember that about barber's. I usualy go to a street barber's near home about 500m, the barber is a old man and he looks up not fashion, but it only costs 1 CNY. Yeah, even he will takes about 30min to serivce for you, this is different from the US. I heard that all of people service will costs so expensive anyway.</p>
+]]></summary>
+        <content type="html"><![CDATA[<p><img src="/static/img/barber_sz.jpg" alt="full"></p>
+<p>When I was a little boy, maybe 1995, I living in a small town with my family. I remember that about barber's. I usualy go to a street barber's near home about 500m, the barber is a old man and he looks up not fashion, but it only costs 1 CNY. Yeah, even he will takes about 30min to serivce for you, this is different from the US. I heard that all of people service will costs so expensive anyway.</p>
+<p>A few years later, there are some looks up is very fashion barber's in the street, just two point</p>
+<ul>
+<li>A big glass wall-side, it looks very different around.</li>
+<li>A Pole outside their Shop, yes, all of them</li>
+</ul>
+<p><img src="/static/img/barber_pole.jpeg" alt="full"></p>
+<p>I was shock when I first see them: How a fancy barber's is? It must be so expensive, but I realy want to go inside everytime anyway.</p>
+<p>But parents always warn thire children:</p>
+<p>Don't go there forever!</p>
+<p>It's like crime when someone mentions the fashion barber's. becasue there are some lack of clothing girls...it's so hard to say what feeling is.</p>
+<p>I first go inside the fashion barber's when I was 18 years old. it's a keep secrets from family, I remember that time it costs 4 CNY, it's a little expensive for me at that time.</p>
+<p>Fortunately, there is nothing! just a younger girl be a barber service for me, only different from other barber's that is she wash my hair after hair cut done.</p>
+<p>But most older people don't go there because they think there is provide sex not hair cut service, it was very strange at the time.</p>
+]]></content>
+        <author>
+            <name>Nicholas Lee</name>
+            <email>lizhongit@gmail.com</email>
+            <uri>https://itvop.com/about.html</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[100th days after the twins was born]]></title>
         <id>10</id>
@@ -456,31 +486,6 @@ Static pod: kube-scheduler-node4 hash: 4e1bd6e5b41d60d131353157588ab020
 </ul>
 <h2>Updated in November 28, 2019</h2>
 <p>About the Pods of Complated status isn't auto clean on the CronJob, I have been find out what is happing. it don't matter with Kubernetes, it's on the Etcd, it's version too old dons’t support the latest Kubernetes versions. I’m fixed that by upgrade the Etcd to the latest version.</p>
-]]></content>
-        <author>
-            <name>Nicholas Lee</name>
-            <email>lizhongit@gmail.com</email>
-            <uri>https://itvop.com/about.html</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Welcome]]></title>
-        <id>1</id>
-        <link href="https://itvop.com/1_welcome.html"/>
-        <updated>2019-11-05T16:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<p><img src="/static/img/new_start.jpg" alt="full"></p>
-<h2>About me</h2>
-<p>Hello, this is Nicholas Lee, I'm a Chinese and 32 years old this year. I'm hot for coding and coding for a living, I have over 9 years coding experience in Web Development, I be at a IT company's Full-Stack developer in Peking now.</p>
-]]></summary>
-        <content type="html"><![CDATA[<p><img src="/static/img/new_start.jpg" alt="full"></p>
-<h2>About me</h2>
-<p>Hello, this is Nicholas Lee, I'm a Chinese and 32 years old this year. I'm hot for coding and coding for a living, I have over 9 years coding experience in Web Development, I be at a IT company's Full-Stack developer in Peking now.</p>
-<h2>About the website</h2>
-<p>Here's my personal website, I'd like to sharing more and more about coding skills here, of course I'd like sharing interesting thing about China sometime, too.</p>
-<p>You can focus me by the website, <a href="https://github.com/lizhongit">Github</a> and <a href="https://twitter.com/lizhongit">Twitter</a> if you want. I'll be happy to know you, maybe we could be a good friends in the future.</p>
-<p>If you have a plan to traveling China, I'll be happy to give you more infomation about China as I can.</p>
-<p>Because I'm a new guy in English, anything like grammar and words maybe wrong if you see, please help me.</p>
-<p>Thanks everybody!</p>
 ]]></content>
         <author>
             <name>Nicholas Lee</name>
