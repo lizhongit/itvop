@@ -42,6 +42,7 @@
           <div class="app-line1"></div>
 
           <div class="app-share">
+            <div class="sharethis-inline-share-buttons"></div>
           </div>
 
           <div class="app-article-notice">

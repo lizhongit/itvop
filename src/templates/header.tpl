@@ -15,3 +15,5 @@
 <style type="text/css">
 {{{ style }}}
 </style>
+
+<script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=5ec48b12e8dc6d001205ef57&product=inline-share-buttons" async="async"></script>
